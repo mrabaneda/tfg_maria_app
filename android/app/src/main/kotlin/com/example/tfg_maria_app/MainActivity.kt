@@ -1,4 +1,4 @@
-package com.example.tfg_maria_app
+package com.tfg.maria.app
 
 import io.flutter.embedding.android.FlutterActivity
 
