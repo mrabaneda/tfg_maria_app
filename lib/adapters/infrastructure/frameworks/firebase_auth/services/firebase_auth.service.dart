@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tfg_maria_app/core/exceptions/errors.dart';
 import 'package:tfg_maria_app/core/domain/value_objects/types.dart';
 import 'package:tfg_maria_app/core/domain/entities/auth_user.entity.dart';
 import 'package:tfg_maria_app/core/domain/ports/services/auth.service.dart';
@@ -9,7 +10,29 @@ class FireBaseAuthService implements BaseAuthService {
   FireBaseAuthService({required this.auth});
 
   @override
-  Future<void> signIn(String email, String password) => auth.signInWithEmailAndPassword(email: email, password: password);
+  Future<void> signIn(String email, String password) {
+    try {
+      if (email.isEmpty) throw WarningException(message: 'Email vacío');
+      if (password.isEmpty) throw WarningException(message: 'Contraseña vacía');
+
+      return auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseException catch (fex) {
+      switch (fex.code) {
+        case "invalid-email":
+          throw ErrorException(message: "Email inválido");
+        case "user-disabled":
+          throw ErrorException(message: "Usuario deshabilitado");
+        case "user-not-found":
+          throw ErrorException(message: "Usuario no encontrado");
+        case "wrong-password":
+          throw ErrorException(message: "Contraseña incorrecta");
+        default:
+          rethrow;
+      }
+    } catch (_) {
+      rethrow;
+    }
+  }
 
   @override
   Future<void> signOut() => auth.signOut();

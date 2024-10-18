@@ -1,16 +1,13 @@
-import 'package:tfg_maria_app/core/domain/value_objects/login_password.vo.dart';
-import 'package:tfg_maria_app/core/domain/value_objects/types.dart';
+import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/models/login_password.model.dart';
 
-class LoginEntity {
-  final UID uid;
+class LoginModel {
   final String email;
   final String photoUrl;
   final String photoRelativePath;
   final String photoName;
-  final LoginPasswordVO passwordModel;
+  final LoginPasswordModel passwordModel;
 
-  LoginEntity({
-    required this.uid,
+  LoginModel({
     required this.email,
     required this.photoUrl,
     required this.photoRelativePath,
