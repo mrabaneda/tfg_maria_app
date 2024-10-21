@@ -7,7 +7,7 @@ class LoginEntity {
   final String photoUrl;
   final String photoRelativePath;
   final String photoName;
-  final LoginPasswordVO passwordModel;
+  final List<LoginPasswordVO> passwordModel;
 
   LoginEntity({
     required this.uid,
