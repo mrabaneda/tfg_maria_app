@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/states/sign_in.state.dart';
 import 'package:tfg_maria_app/core/domain/value_objects/nullable.dart';
@@ -25,9 +24,6 @@ class SignInController extends StateNotifier<SignInState> {
   Future<void> signIn() async {
     try {
       if (state.asyncState.isLoading) return;
-
-      // TODO: review ?
-      FocusManager.instance.primaryFocus?.unfocus();
 
       if (mounted) {
         state = state.copyWith(

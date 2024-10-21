@@ -10,6 +10,11 @@ class LoginController extends StateNotifier<LoginState> {
     init();
   }
 
+  void setLoginIndex(int index) {
+    if (!mounted) return;
+    state = state.copyWith(loginIndex: index);
+  }
+
   Future<void> init() async {
     try {
       if (!state.asyncState.isLoading) {

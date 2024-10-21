@@ -43,10 +43,11 @@ class CommonTheme {
   static const secondaryTextColor = AppColors.gray;
   static const expasionTileIconColor = AppColors.lightGray;
 
-  static const statusBarColor = AppColors.yellowLight;
+  static const statusBarColor = AppColors.black;
   static const systemNavigationBarColor = AppColors.black;
 
   static const navBarColor = AppColors.white;
+  static const valeBarColor = AppColors.tealLight;
   static const appBarColor = AppColors.white;
   static const disabledTextColor = AppColors.white;
   static const darkButtonTextColor = AppColors.white;
@@ -80,18 +81,15 @@ class CommonTheme {
   static final bodyMediumLightStyle = bodyMedium.copyWith(color: darkButtonTextColor);
 
   static final bodyLargeStyle = bodyLarge.copyWith(color: textColor);
-  static final searchMapAppBarTextStyle = bodyLarge.copyWith(color: darkButtonTextColor);
 
   static final titleMediumTextStyle = titleMedium.copyWith(color: textColor);
   static final homeCardTitleTextStyle = titleMedium.copyWith(color: primaryColor);
   static final titleMediumLightStyle = titleMedium.copyWith(color: darkButtonTextColor);
 
   static final cardBodyTextStyle = titleSmall.copyWith(color: textColor);
-  static final homeActionListTitle = titleSmall.copyWith(color: primaryColor);
-  static final meatOrderButtonTextStyle = titleSmall.copyWith(color: primaryColor);
   static final titleSmallLightStyle = titleSmall.copyWith(color: darkButtonTextColor);
 
-  static final appBarTextStyle = titleLarge.copyWith(color: statusBarColor);
+  static final appBarTextStyle = titleMedium.copyWith(color: statusBarColor);
 
   static const systemUiOverlayStyle = SystemUiOverlayStyle(
     statusBarColor: CommonTheme.statusBarColor,

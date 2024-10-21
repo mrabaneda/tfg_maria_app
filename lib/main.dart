@@ -17,6 +17,10 @@ void main() {
     WidgetsFlutterBinding.ensureInitialized();
 
     await Future.microtask(
+      () => SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky),
+    );
+
+    await Future.microtask(
       () => SystemChrome.setSystemUIOverlayStyle(
         CommonTheme.systemUiOverlayStyle,
       ),

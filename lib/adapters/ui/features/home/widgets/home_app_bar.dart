@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tfg_maria_app/adapters/ui/providers/global_controller_provider.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/constants.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 
-class HomeAppBar extends StatelessWidget {
+class HomeAppBar extends ConsumerWidget {
   const HomeAppBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: BoxDecoration(
         color: CommonTheme.backgroundColor,
@@ -25,7 +27,10 @@ class HomeAppBar extends StatelessWidget {
             height: hJM(3),
           ),
           const Spacer(),
-          const Text('Inicio'),
+          Text(
+            'Bienvenidx, ${ref.watch(globalControllerProvider.select((value) => value.authUser!.name))}',
+            style: CommonTheme.titleSmall,
+          ),
           SizedBox(width: wJM(3)),
         ],
       ),

@@ -10,7 +10,7 @@ class ValeBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: CommonTheme.barHeight,
-      decoration: BoxDecoration(color: CommonTheme.statusBarColor),
+      decoration: BoxDecoration(color: CommonTheme.valeBarColor),
       child: Center(
         child: Image.asset(
           valeLogo,
