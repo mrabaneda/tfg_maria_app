@@ -10,7 +10,7 @@ class LoginFactory {
       photoUrl: entity.photoUrl,
       photoRelativePath: entity.photoRelativePath,
       photoName: entity.photoName,
-      passwordModel: _passwordModelFromEntity(entity.passwordModel),
+      passwordModel: entity.passwordModel.map(_passwordModelFromEntity).toList(),
     );
   }
 

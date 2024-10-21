@@ -5,7 +5,7 @@ class LoginModel {
   final String photoUrl;
   final String photoRelativePath;
   final String photoName;
-  final LoginPasswordModel passwordModel;
+  final List<LoginPasswordModel> passwordModel;
 
   LoginModel({
     required this.email,

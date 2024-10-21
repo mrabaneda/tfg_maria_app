@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/states/global_state.dart';
 import 'package:tfg_maria_app/core/domain/entities/auth_user.entity.dart';
+import 'package:tfg_maria_app/core/domain/enums/preferences_type.enum.dart';
 import 'package:tfg_maria_app/core/domain/value_objects/nullable.dart';
 import 'package:tfg_maria_app/core/use_cases/auth/get_auth_user.use_case.dart';
 
@@ -12,6 +13,10 @@ class GloblalController extends StateNotifier<GlobalState> {
     AuthUserEntity? authUser,
   }) : super(GlobalState.initial(authUser: authUser)) {
     init();
+  }
+
+  void setPreference(PreferencesTypeEnum preference) {
+    if (mounted) state = state.copyWith(preference: Nullable(preference));
   }
 
   Future<void> init() async {
