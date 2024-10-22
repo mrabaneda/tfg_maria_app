@@ -11,8 +11,9 @@ class SignOutController extends StateNotifier<AsyncValue<bool>> {
       if (state.isLoading) return;
 
       if (mounted) state = const AsyncLoading();
-
+      
       await signOutUseCase.execute();
+
       if (mounted) state = const AsyncData(true);
     } on Exception catch (ex) {
       if (mounted) state = AsyncError(ex, StackTrace.current);

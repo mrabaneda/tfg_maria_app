@@ -28,9 +28,7 @@ void main() {
 
     await Future.wait([
       dotenv.load(fileName: ".env"),
-      Firebase.initializeApp(
-        options: DefaultFirebaseOptions.android,
-      ),
+      Firebase.initializeApp(options: DefaultFirebaseOptions.android),
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
         SystemUiOverlay.top,
         SystemUiOverlay.bottom,
