@@ -45,18 +45,21 @@ class _SignInItemstate extends ConsumerState<SignInItem> {
               ),
               borderRadius: BorderRadius.circular(wJM(3)),
             ),
-            child: CachedNetworkImage(
-              imageUrl: widget.logins[index].photoUrl,
-              placeholder: (_, url) => Align(
-                alignment: Alignment.center,
-                child: SizedBox(
-                  height: hJM(8),
-                  width: hJM(8),
-                  child: CircularProgressIndicator(),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(wJM(3)),
+              child: CachedNetworkImage(
+                imageUrl: widget.logins[index].photoUrl,
+                placeholder: (_, url) => Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    height: hJM(8),
+                    width: hJM(8),
+                    child: CircularProgressIndicator(),
+                  ),
                 ),
+                errorWidget: (_, __, ___) => const Icon(Icons.error),
+                fit: BoxFit.cover,
               ),
-              errorWidget: (_, __, ___) => const Icon(Icons.error),
-              fit: BoxFit.cover,
             ),
           ),
         );

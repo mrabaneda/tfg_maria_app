@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tfg_maria_app/adapters/ui/features/auth/sign_out/providers/sign_out_controller.provider.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/helpers/extensions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_button.dart';
@@ -10,6 +11,15 @@ class SignOutDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      signOutControllerProvider.select((value) => value.isDone),
+      (_, isDone) {
+        if (isDone && Navigator.of(context).canPop()) {
+          Navigator.pop(context, false);
+        }
+      },
+    );
+
     return Dialog(
       surfaceTintColor: CommonTheme.backgroundColor,
       shape: RoundedRectangleBorder(borderRadius: CommonTheme.defaultCardRadius),

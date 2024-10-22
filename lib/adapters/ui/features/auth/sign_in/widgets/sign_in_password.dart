@@ -37,8 +37,8 @@ class _SignInPasswordstate extends ConsumerState<SignInPassword> {
         if (asyncValue.isError) {
           errorDialogBuilder(context, asyncValue.error.toString());
         }
-        if (asyncValue.isDone) {
-          successDialogBuilder(context, "¡Perfecto! Bienvenido a la aplicación de VALE.");
+        if (asyncValue.isDone && Navigator.of(context).canPop()) {
+          Navigator.pop(context, false);
         }
       },
     );
@@ -79,6 +79,7 @@ class _SignInPasswordstate extends ConsumerState<SignInPassword> {
                               );
                             },
                             child: Container(
+                              height: hJM(40),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                   color: selectedPassword.contains(widget.loginPasswords[index].passwordPiece)
@@ -88,18 +89,21 @@ class _SignInPasswordstate extends ConsumerState<SignInPassword> {
                                 ),
                                 borderRadius: BorderRadius.circular(wJM(3)),
                               ),
-                              child: CachedNetworkImage(
-                                imageUrl: widget.loginPasswords[index].photoUrl,
-                                placeholder: (_, url) => Align(
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    height: hJM(8),
-                                    width: hJM(8),
-                                    child: CircularProgressIndicator(),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(wJM(3)),
+                                child: CachedNetworkImage(
+                                  imageUrl: widget.loginPasswords[index].photoUrl,
+                                  placeholder: (_, url) => Align(
+                                    alignment: Alignment.center,
+                                    child: SizedBox(
+                                      height: hJM(8),
+                                      width: hJM(8),
+                                      child: CircularProgressIndicator(),
+                                    ),
                                   ),
+                                  errorWidget: (_, __, ___) => const Icon(Icons.error),
+                                  fit: BoxFit.cover,
                                 ),
-                                errorWidget: (_, __, ___) => const Icon(Icons.error),
-                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
