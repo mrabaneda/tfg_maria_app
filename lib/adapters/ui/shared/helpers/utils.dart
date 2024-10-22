@@ -1,22 +1,8 @@
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/exit_dialog.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/confirm_dialog.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
-
-String formatDate(int mils, [bool utc = true]) {
-  return DateFormat('dd/MM/yyyy').format(DateTime.fromMillisecondsSinceEpoch(mils, isUtc: utc));
-}
-
-String formatStringDate(String dtoDate) {
-  return DateFormat('dd/MM/yyyy').format(DateTime.parse(dtoDate));
-}
-
-DateTime str2Date(String dateStr) => DateFormat('dd/MM/yyyy').parse(dateStr);
-
-bool compareStringDates(String firstDate, String secondDate) =>
-    str2Date(firstDate).isBefore(str2Date(secondDate)) || str2Date(firstDate).isAtSameMomentAs(str2Date(secondDate));
 
 Route fadeTransitionRoute(Widget destination) {
   return PageRouteBuilder(

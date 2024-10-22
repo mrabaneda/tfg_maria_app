@@ -20,6 +20,8 @@ class FireBaseAuthService implements BaseAuthService {
       switch (fex.code) {
         case "invalid-email":
           throw ErrorException(message: "Email inválido");
+        case "invalid-credential":
+          throw ErrorException(message: "Credenciales inválidas");
         case "user-disabled":
           throw ErrorException(message: "Usuario deshabilitado");
         case "user-not-found":

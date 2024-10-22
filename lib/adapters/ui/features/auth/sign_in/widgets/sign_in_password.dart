@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/models/login_password.model.dart';
 import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/providers/sign_in_controller.provider.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/helpers/extensions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/helpers/utils.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_app_bar.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_button.dart';
@@ -29,6 +31,18 @@ class _SignInPasswordstate extends ConsumerState<SignInPassword> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<AsyncValue<bool>>(
+      signInControllerProvider.select((value) => value.asyncState),
+      (_, asyncValue) {
+        if (asyncValue.isError) {
+          errorDialogBuilder(context, asyncValue.error.toString());
+        }
+        if (asyncValue.isDone) {
+          successDialogBuilder(context, "¡Perfecto! Bienvenido a la aplicación de VALE.");
+        }
+      },
+    );
+
     return SafeArea(
       child: Scaffold(
         body: Body(

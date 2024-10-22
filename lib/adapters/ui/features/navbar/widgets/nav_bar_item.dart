@@ -17,25 +17,29 @@ class NavBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: navBarItemViewModel.onPressed,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          BaseButton(
-            width: wJM(15),
-            height: wJM(10),
-            borderRadius: CommonTheme.navbarItemRadius,
-            backgroundColor: navBarItemViewModel.isSelected ? CommonTheme.navbarItemSelectedBackgroundColor : Colors.transparent,
-            icon: Icon(
-              navBarItemViewModel.iconData,
-              size: 0.033.sh,
-              color: navBarItemViewModel.isSelected ? CommonTheme.backgroundColor : CommonTheme.textColor,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: hJM(0.6)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            BaseButton(
+              width: wJM(8),
+              height: wJM(8),
+              padding: EdgeInsets.zero,
+              borderRadius: CommonTheme.navbarItemRadius,
+              backgroundColor: navBarItemViewModel.isSelected ? CommonTheme.navbarItemSelectedBackgroundColor : Colors.transparent,
+              icon: Icon(
+                navBarItemViewModel.iconData,
+                size: 0.025.sh,
+                color: navBarItemViewModel.isSelected ? CommonTheme.backgroundColor : CommonTheme.textColor,
+              ),
             ),
-          ),
-          Text(
-            navBarItemViewModel.label,
-            style: CommonTheme.labelMedium.copyWith(fontWeight: FontWeight.bold),
-          ),
-        ],
+            Text(
+              navBarItemViewModel.label,
+              style: CommonTheme.labelSmall.copyWith(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tfg_maria_app/adapters/ui/providers/global_controller_provider.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/providers/global_controller_provider.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/constants.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';

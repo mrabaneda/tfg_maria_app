@@ -35,8 +35,8 @@ class ConfirmDialog extends StatelessWidget {
       surfaceTintColor: CommonTheme.backgroundColor,
       shape: RoundedRectangleBorder(borderRadius: CommonTheme.defaultCardRadius),
       child: Container(
-        width: wJM(65),
-        height: height ?? hJM(33),
+        width: wJM(70),
+        height: height ?? hJM(35),
         padding: EdgeInsets.all(hJM(3)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

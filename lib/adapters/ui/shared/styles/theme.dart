@@ -102,7 +102,7 @@ class CommonTheme {
   static const defaultCardElevation = 1.5;
 
   /* ---------- Default constants ---------- */
-  static final baseBarHeight = 0.1.sh;
+  static final baseBarHeight = 0.09.sh;
   static final appBarHeight = 0.07.sh;
   static final barHeight = 0.04.sh;
   static final defaultButtonHeight = hJM(6);

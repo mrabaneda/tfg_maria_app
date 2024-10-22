@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/widgets/sign_in_page.dart';
 import 'package:tfg_maria_app/adapters/ui/features/navbar/widgets/nav_bar.dart';
-import 'package:tfg_maria_app/adapters/ui/providers/global_controller_provider.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/providers/global_controller_provider.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/extensions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/error_app.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/loading_app.dart';

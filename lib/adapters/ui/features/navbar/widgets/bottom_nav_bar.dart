@@ -22,20 +22,15 @@ class BottomNavBar extends ConsumerWidget {
         children: List.generate(
           navBarItems.length,
           (index) => Expanded(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                NavBarItem(
-                  navBarItemViewModel: NavBarItemViewModel(
-                    iconData: ref.watch(navBarControllerProvider) == index
-                        ? navBarItemsSelected.elementAt(index).iconData
-                        : navBarItems.elementAt(index).iconData,
-                    isSelected: ref.watch(navBarControllerProvider) == index,
-                    label: labels.elementAt(index),
-                    onPressed: () => ref.read(navBarControllerProvider.notifier).changeTab(index),
-                  ),
-                ),
-              ],
+            child: NavBarItem(
+              navBarItemViewModel: NavBarItemViewModel(
+                iconData: ref.watch(navBarControllerProvider) == index
+                    ? navBarItemsSelected.elementAt(index).iconData
+                    : navBarItems.elementAt(index).iconData,
+                isSelected: ref.watch(navBarControllerProvider) == index,
+                label: labels.elementAt(index),
+                onPressed: () => ref.read(navBarControllerProvider.notifier).changeTab(index),
+              ),
             ),
           ),
         ),
