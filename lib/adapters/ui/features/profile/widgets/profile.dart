@@ -44,9 +44,9 @@ class Profile extends ConsumerWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: hJM(3)),
-                Text(user?.name ?? "Lucía Almagro Belver", style: CommonTheme.titleMedium),
-                SizedBox(height: hJM(3)),
+                SizedBox(height: hJM(5)),
+                Text(user?.name ?? "María Rabaneda Sierra", style: CommonTheme.titleMedium),
+                SizedBox(height: hJM(10)),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,

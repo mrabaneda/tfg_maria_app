@@ -111,7 +111,7 @@ class CommonTheme {
   static final defaultIconSizeChip = wJM(5);
 
   /* ---------- Default Paddings ---------- */
-  static final defaultBodyPadding = EdgeInsets.all(wJM(5));
+  static final defaultBodyPadding = EdgeInsets.all(wJM(4));
   static final defaultCardPadding = EdgeInsets.all(wJM(4));
   static final defaultButtonPadding = EdgeInsets.symmetric(horizontal: wJM(3));
   static final defaultPadding = EdgeInsets.symmetric(horizontal: wJM(5), vertical: hJM(1.5));
