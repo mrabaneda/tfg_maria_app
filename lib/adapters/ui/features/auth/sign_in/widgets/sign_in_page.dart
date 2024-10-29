@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/widgets/sign_in_item.dart';
+import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/widgets/sign_in_list.dart';
 import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/widgets/sign_in_password.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/utils.dart';
@@ -37,7 +37,7 @@ class SignInPage extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(wJM(3)),
                       ),
                       height: hJM(90),
-                      child: Scrollbar(thumbVisibility: true, child: SignInItem(logins: loginState.logins)),
+                      child: Scrollbar(thumbVisibility: true, child: SignInList(logins: loginState.logins)),
                     ),
                     SizedBox(height: hJM(3)),
                     BaseButton(

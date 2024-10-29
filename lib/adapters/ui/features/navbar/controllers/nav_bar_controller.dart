@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tfg_maria_app/adapters/ui/features/navbar/helpers/constant.dart';
+import 'package:tfg_maria_app/adapters/ui/features/navbar/helpers/constants.dart';
 
 class NavBarController extends StateNotifier<int> {
   NavBarController() : super(defaultTab);

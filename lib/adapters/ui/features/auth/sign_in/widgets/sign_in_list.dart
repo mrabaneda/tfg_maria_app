@@ -6,19 +6,19 @@ import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/providers/login_
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 
-class SignInItem extends ConsumerStatefulWidget {
+class SignInList extends ConsumerStatefulWidget {
   final List<LoginModel> logins;
 
-  const SignInItem({
+  const SignInList({
     super.key,
     required this.logins,
   });
 
   @override
-  ConsumerState<SignInItem> createState() => _SignInItemstate();
+  ConsumerState<SignInList> createState() => _SignInListstate();
 }
 
-class _SignInItemstate extends ConsumerState<SignInItem> {
+class _SignInListstate extends ConsumerState<SignInList> {
   int selectedItem = -1;
 
   @override
