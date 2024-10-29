@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tfg_maria_app/adapters/ui/features/navbar/helpers/constant.dart';
+import 'package:tfg_maria_app/adapters/ui/features/navbar/helpers/constants.dart';
 import 'package:tfg_maria_app/adapters/ui/features/navbar/models/nav_bar_item_view_model.dart';
 import 'package:tfg_maria_app/adapters/ui/features/navbar/providers/nav_bar_controller_provider.dart';
 import 'package:tfg_maria_app/adapters/ui/features/navbar/widgets/nav_bar_item.dart';
