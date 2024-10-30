@@ -51,12 +51,22 @@ class Profile extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Mi preferencia:', style: CommonTheme.bodyMedium),
+                    Text('Mis preferencias:', style: CommonTheme.bodyMedium),
                     SizedBox(width: wJM(5)),
-                    BaseButton(
-                      text: 'Audio',
-                      textStyle: CommonTheme.bodyMediumLightStyle,
-                      backgroundColor: CommonTheme.secondaryColorLight,
+                    Column(
+                      children: [
+                        BaseButton(
+                          text: 'Audio',
+                          textStyle: CommonTheme.bodyMediumLightStyle,
+                          backgroundColor: CommonTheme.secondaryColorLight,
+                        ),
+                        SizedBox(height: hJM(2)),
+                        BaseButton(
+                          text: 'Imágenes',
+                          textStyle: CommonTheme.bodyMediumLightStyle,
+                          backgroundColor: CommonTheme.thirdColorLight,
+                        ),
+                      ],
                     ),
                   ],
                 ),
