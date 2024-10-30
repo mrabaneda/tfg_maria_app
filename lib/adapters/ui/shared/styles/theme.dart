@@ -6,26 +6,27 @@ import 'package:tfg_maria_app/adapters/ui/shared/helpers/size_extension.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/colors.dart';
 
 class CommonTheme {
-  static const primaryValue = 0xff68C0B8; // Color base (tealNormal)
+  static const primaryValue = 0xff68C0B8;
   static const primaryColorMaterial = MaterialColor(
     primaryValue,
     {
-      50: Color.fromRGBO(104, 192, 184, 1), // Opacidad 1.0 (100%)
-      100: Color.fromRGBO(104, 192, 184, 0.9), // Opacidad 0.9 (90%)
-      200: Color.fromRGBO(104, 192, 184, 0.8), // Opacidad 0.8 (80%)
-      300: Color.fromRGBO(104, 192, 184, 0.7), // Opacidad 0.7 (70%)
-      400: Color.fromRGBO(104, 192, 184, 0.6), // Opacidad 0.6 (60%)
-      500: Color.fromRGBO(104, 192, 184, 0.5), // Opacidad 0.5 (50%)
-      600: Color.fromRGBO(104, 192, 184, 0.4), // Opacidad 0.4 (40%)
-      700: Color.fromRGBO(104, 192, 184, 0.3), // Opacidad 0.3 (30%)
-      800: Color.fromRGBO(104, 192, 184, 0.2), // Opacidad 0.2 (20%)
-      900: Color.fromRGBO(104, 192, 184, 0.1), // Opacidad 0.1 (10%)
+      50: Color.fromRGBO(104, 192, 184, 1),
+      100: Color.fromRGBO(104, 192, 184, 0.9),
+      200: Color.fromRGBO(104, 192, 184, 0.8),
+      300: Color.fromRGBO(104, 192, 184, 0.7),
+      400: Color.fromRGBO(104, 192, 184, 0.6),
+      500: Color.fromRGBO(104, 192, 184, 0.5),
+      600: Color.fromRGBO(104, 192, 184, 0.4),
+      700: Color.fromRGBO(104, 192, 184, 0.3),
+      800: Color.fromRGBO(104, 192, 184, 0.2),
+      900: Color.fromRGBO(104, 192, 184, 0.1),
     },
   );
   static const primaryColor = Color(primaryValue);
   static const primaryColorDark = AppColors.tealDark;
   static const secondaryColor = AppColors.pinkNormal;
   static const secondaryColorLight = AppColors.pinkLight;
+  static const thirdColorLight = AppColors.orangeLight;
   static const successColor = AppColors.success;
   static const errorColor = AppColors.error;
   static const linkColor = AppColors.blue600;
@@ -55,6 +56,11 @@ class CommonTheme {
   static const backgroundColor = AppColors.whitesmoke;
   static const navbarItemSelectedBackgroundColor = AppColors.tealNormalHover;
 
+  static const Color laughIconBackground = Color.fromARGB(255, 154, 221, 134);
+  static const Color mehIconBackground = Color.fromARGB(255, 152, 189, 233);
+  static const Color smileIconBackground = Color.fromARGB(255, 248, 224, 128);
+  static const Color frownIconBackground = Color.fromARGB(255, 224, 115, 96);
+
   static TextStyle bodySmall = TextStyle(fontSize: 12.sp);
   static TextStyle bodyMedium = TextStyle(fontSize: 14.sp);
   static TextStyle bodyLarge = TextStyle(fontSize: 16.sp);
@@ -76,6 +82,7 @@ class CommonTheme {
   static TextStyle displayLarge = TextStyle(fontSize: 57.sp);
 
   /* ---------- Text Styles ---------- */
+  static final bodySmallStyle = bodySmall.copyWith(color: textColor);
   static final bodySmallLightStyle = bodySmall.copyWith(color: CommonTheme.darkButtonTextColor);
 
   static final bodyMediumStyle = bodyMedium.copyWith(color: textColor);
