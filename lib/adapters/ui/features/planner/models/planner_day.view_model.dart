@@ -8,4 +8,14 @@ class PlannerDayViewModel {
     required this.fullDay,
     required this.taskList,
   });
+
+  PlannerDayViewModel copyWith({
+    String? fullDay,
+    List<PlannerDayItemViewModel>? taskList,
+  }) {
+    return PlannerDayViewModel(
+      fullDay: fullDay ?? this.fullDay,
+      taskList: taskList ?? this.taskList,
+    );
+  }
 }
