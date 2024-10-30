@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tfg_maria_app/adapters/ui/features/planner/providers/planner_controller.provider.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 
-class TaskStatusCheckbox extends StatefulWidget {
+class TaskStatusCheckbox extends ConsumerStatefulWidget {
   final bool isChecked;
+  final int? dayIndex;
+  final int? taskIndex;
 
   const TaskStatusCheckbox({
     super.key,
     required this.isChecked,
+    this.dayIndex,
+    this.taskIndex,
   });
 
   @override
-  State<TaskStatusCheckbox> createState() => _TaskStatusCheckboxState();
+  ConsumerState<TaskStatusCheckbox> createState() => _TaskStatusCheckboxState();
 }
 
-class _TaskStatusCheckboxState extends State<TaskStatusCheckbox> {
+class _TaskStatusCheckboxState extends ConsumerState<TaskStatusCheckbox> {
   bool _isChecked = false;
 
   @override
@@ -26,7 +32,12 @@ class _TaskStatusCheckboxState extends State<TaskStatusCheckbox> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => setState(() => _isChecked = !_isChecked),
+      onTap: () => setState(() {
+        _isChecked = !_isChecked;
+        if (widget.dayIndex != null && widget.taskIndex != null) {
+          ref.read(plannerProvider.notifier).setIsDone(widget.dayIndex!, widget.taskIndex!, _isChecked);
+        }
+      }),
       child: Container(
         width: wJM(5.5),
         height: wJM(5.5),

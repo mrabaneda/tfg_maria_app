@@ -21,7 +21,11 @@ class PlannerController extends StateNotifier<PlannerState> {
     final updatedDays = List<PlannerDayViewModel>.from(state.plannerDays);
 
     final updatedTasks = List<PlannerDayItemViewModel>.from(updatedDays[dayIndex].taskList);
-    updatedTasks[taskIndex] = updatedTasks[taskIndex].copyWith(taskFeedback: feedback);
+    final currentFeedback = updatedTasks[taskIndex].taskFeedback;
+
+    final newFeedback = (currentFeedback == feedback) ? 0 : feedback;
+
+    updatedTasks[taskIndex] = updatedTasks[taskIndex].copyWith(taskFeedback: newFeedback);
 
     updatedDays[dayIndex] = updatedDays[dayIndex].copyWith(taskList: updatedTasks);
 

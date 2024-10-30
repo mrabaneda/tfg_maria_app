@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:tfg_maria_app/adapters/ui/features/planner/helpers/constants.dart';
+import 'package:tfg_maria_app/adapters/ui/features/planner/providers/planner_controller.provider.dart';
 import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/planner_day.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_app_bar.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/body.dart';
 
-class Planner extends StatelessWidget {
+class Planner extends ConsumerWidget {
   const Planner({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final weekPlanner = ref.watch(plannerProvider.select((value) => value.plannerDays));
     return SafeArea(
       child: Scaffold(
         body: Body(
@@ -31,9 +33,9 @@ class Planner extends StatelessWidget {
                     child: ListView.separated(
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: weeklyPlanner.length,
+                      itemCount: weekPlanner.length,
                       itemBuilder: (_, index) {
-                        return PlannerDay(plannerDay: weeklyPlanner[index]);
+                        return PlannerDay(dayIndex: index);
                       },
                       separatorBuilder: (_, __) => Divider(height: hJM(5), color: CommonTheme.dividerColor),
                     ),

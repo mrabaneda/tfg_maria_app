@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_maria_app/adapters/ui/features/planner/models/planner_day_item.view_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tfg_maria_app/adapters/ui/features/planner/providers/planner_controller.provider.dart';
+import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/audio_preference.dart';
+import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/image_preference.dart';
 import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/task_status_checkbox.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
@@ -8,18 +11,20 @@ import 'package:tfg_maria_app/adapters/ui/shared/widgets/icons/laugh.icon.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/icons/meh.icon.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/icons/smile.icon.dart';
 
-class PlannerDayItemTask extends StatefulWidget {
-  final PlannerDayItemViewModel taskItem;
+class PlannerDayItemTask extends ConsumerWidget {
+  final int dayIndex;
+  final int taskIndex;
 
-  const PlannerDayItemTask({super.key, required this.taskItem});
+  const PlannerDayItemTask({
+    super.key,
+    required this.dayIndex,
+    required this.taskIndex,
+  });
 
   @override
-  State<PlannerDayItemTask> createState() => _PlannerDayItemTask();
-}
-
-class _PlannerDayItemTask extends State<PlannerDayItemTask> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final plannerDays = ref.watch(plannerProvider.select((value) => value.plannerDays));
+    final taskItem = plannerDays[dayIndex].taskList[taskIndex];
     return Padding(
       padding: CommonTheme.defaultBodyPadding,
       child: Column(
@@ -27,14 +32,21 @@ class _PlannerDayItemTask extends State<PlannerDayItemTask> {
         children: [
           Row(
             children: [
-              TaskStatusCheckbox(isChecked: widget.taskItem.isDone),
+              TaskStatusCheckbox(isChecked: taskItem.isDone, dayIndex: dayIndex, taskIndex: taskIndex),
               SizedBox(width: wJM(3)),
-              Text(widget.taskItem.title, style: CommonTheme.titleSmall),
+              Text(taskItem.title, style: CommonTheme.titleSmall),
             ],
           ),
           SizedBox(height: hJM(3)),
-          _TaskDescription(description: widget.taskItem.description),
+          _TaskDescription(description: taskItem.description),
           SizedBox(height: hJM(3)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ImagePreference(isVisible: taskItem.isDone),
+              AudioPreference(text: 'Bien hecho campeona, eres la mejor.', isVisible: taskItem.isDone),
+            ],
+          ),
           SizedBox(
             width: wJM(99),
             child: Row(
@@ -42,13 +54,25 @@ class _PlannerDayItemTask extends State<PlannerDayItemTask> {
               children: [
                 Text('¿Cómo me he sentido?', style: CommonTheme.bodyMedium),
                 Spacer(),
-                FrownIcon(color: widget.taskItem.taskFeedback == 1 ? CommonTheme.frownIconBackground : CommonTheme.statusBarColor),
+                GestureDetector(
+                  onTap: () => ref.read(plannerProvider.notifier).setFeedback(dayIndex, taskIndex, 1),
+                  child: FrownIcon(color: taskItem.taskFeedback == 1 ? CommonTheme.frownIconBackground : CommonTheme.statusBarColor),
+                ),
                 SizedBox(width: wJM(2)),
-                MehIcon(color: widget.taskItem.taskFeedback == 2 ? CommonTheme.mehIconBackground : CommonTheme.statusBarColor),
+                GestureDetector(
+                  onTap: () => ref.read(plannerProvider.notifier).setFeedback(dayIndex, taskIndex, 2),
+                  child: MehIcon(color: taskItem.taskFeedback == 2 ? CommonTheme.mehIconBackground : CommonTheme.statusBarColor),
+                ),
                 SizedBox(width: wJM(2)),
-                SmileIcon(color: widget.taskItem.taskFeedback == 3 ? CommonTheme.smileIconBackground : CommonTheme.statusBarColor),
+                GestureDetector(
+                  onTap: () => ref.read(plannerProvider.notifier).setFeedback(dayIndex, taskIndex, 3),
+                  child: SmileIcon(color: taskItem.taskFeedback == 3 ? CommonTheme.smileIconBackground : CommonTheme.statusBarColor),
+                ),
                 SizedBox(width: wJM(2)),
-                LaughIcon(color: widget.taskItem.taskFeedback == 4 ? CommonTheme.laughIconBackground : CommonTheme.statusBarColor),
+                GestureDetector(
+                  onTap: () => ref.read(plannerProvider.notifier).setFeedback(dayIndex, taskIndex, 4),
+                  child: LaughIcon(color: taskItem.taskFeedback == 4 ? CommonTheme.laughIconBackground : CommonTheme.statusBarColor),
+                ),
               ],
             ),
           ),
