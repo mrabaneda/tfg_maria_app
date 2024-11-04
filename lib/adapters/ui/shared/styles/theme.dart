@@ -26,7 +26,9 @@ class CommonTheme {
   static const primaryColorDark = AppColors.tealDark;
   static const secondaryColor = AppColors.pinkNormal;
   static const secondaryColorLight = AppColors.pinkLight;
+  static const thirdColor = AppColors.orangeNormal;
   static const thirdColorLight = AppColors.orangeLight;
+
   static const successColor = AppColors.success;
   static const errorColor = AppColors.error;
   static const linkColor = AppColors.blue600;
