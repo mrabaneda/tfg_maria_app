@@ -31,8 +31,8 @@ final List<PlannerDayViewModel> weeklyPlanner = [
       PlannerDayItemViewModel(
         title: 'Escuchar música',
         description: 'Dedica un tiempo a escuchar tus canciones favoritas.',
-        isDone: false,
-        taskFeedback: 0,
+        isDone: true,
+        taskFeedback: 4,
       ),
       PlannerDayItemViewModel(
         title: 'Hacer un dibujo',

@@ -76,7 +76,7 @@ class PlannerDayItemTask extends ConsumerWidget {
               ],
             ),
           ),
-          SizedBox(height: hJM(3)),
+          SizedBox(height: hJM(2)),
           Divider(color: CommonTheme.dividerColor),
         ],
       ),
@@ -94,7 +94,7 @@ class _TaskDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: CommonTheme.defaultCardPadding,
+      padding: EdgeInsets.all(wJM(2)),
       decoration: BoxDecoration(
         border: Border.all(width: 2.0, color: CommonTheme.statusBarColor),
         borderRadius: BorderRadius.circular(wJM(3)),
@@ -104,7 +104,7 @@ class _TaskDescription extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(description, style: CommonTheme.bodySmallStyle),
-          SizedBox(height: hJM(5)),
+          SizedBox(height: hJM(2)),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

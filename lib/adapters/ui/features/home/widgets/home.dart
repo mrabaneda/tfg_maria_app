@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tfg_maria_app/adapters/ui/features/home/helpers/constants.dart';
 import 'package:tfg_maria_app/adapters/ui/features/navbar/providers/nav_bar_controller_provider.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/body.dart';
 import 'package:tfg_maria_app/adapters/ui/features/home/widgets/home_app_bar.dart';
 
@@ -32,7 +33,11 @@ class Home extends ConsumerWidget {
                   final homeMenuItem = homeMenuItems[index];
                   return GestureDetector(
                     onTap: () => ref.read(navBarControllerProvider.notifier).changeTab(homeMenuItem.navBarIndex),
-                    child: _HomeMenuItem(title: homeMenuItem.title, textStyle: homeMenuItem.style, backgroundColor: homeMenuItem.color),
+                    child: _HomeMenuItem(
+                      title: homeMenuItem.title,
+                      backgroundColor: homeMenuItem.color,
+                      imagePath: homeMenuItem.imagePath,
+                    ),
                   );
                 },
               ),
@@ -46,25 +51,34 @@ class Home extends ConsumerWidget {
 
 class _HomeMenuItem extends StatelessWidget {
   final String title;
-  final TextStyle textStyle;
   final Color backgroundColor;
+  final String imagePath;
 
   const _HomeMenuItem({
     required this.title,
-    required this.textStyle,
     required this.backgroundColor,
+    required this.imagePath,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: CommonTheme.defaultBodyPadding,
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(wJM(3)),
       ),
-      child: Center(
-        // padding: const EdgeInsets.all(8.0),
-        child: Text(title, style: textStyle),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Image.asset(
+            imagePath,
+            alignment: Alignment.center,
+            height: hJM(15),
+            fit: BoxFit.contain,
+          ),
+          Text(title, style: CommonTheme.bodyMediumStyle, textAlign: TextAlign.center),
+        ],
       ),
     );
   }

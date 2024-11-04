@@ -16,7 +16,6 @@ class PlannerDayItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final plannerDays = ref.watch(plannerProvider.select((value) => value.plannerDays));
-
     return SafeArea(
       child: Scaffold(
         body: Body(

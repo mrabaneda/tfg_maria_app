@@ -44,7 +44,7 @@ class _TaskStatusCheckboxState extends ConsumerState<TaskStatusCheckbox> {
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(
-            color: _isChecked ? CommonTheme.primaryColor : Colors.grey,
+            color: _isChecked ? CommonTheme.successColor : Colors.grey,
             width: 4,
           ),
           borderRadius: BorderRadius.circular(12),
@@ -52,7 +52,7 @@ class _TaskStatusCheckboxState extends ConsumerState<TaskStatusCheckbox> {
         child: _isChecked
             ? Icon(
                 Icons.check,
-                color: CommonTheme.primaryColorDark,
+                color: CommonTheme.successColor,
                 size: hJM(3),
               )
             : SizedBox.shrink(),

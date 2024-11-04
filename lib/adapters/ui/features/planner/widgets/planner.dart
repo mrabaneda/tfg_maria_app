@@ -34,9 +34,7 @@ class Planner extends ConsumerWidget {
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: weekPlanner.length,
-                      itemBuilder: (_, index) {
-                        return PlannerDay(dayIndex: index);
-                      },
+                      itemBuilder: (_, index) => PlannerDay(dayIndex: index),
                       separatorBuilder: (_, __) => Divider(height: hJM(5), color: CommonTheme.dividerColor),
                     ),
                   ),

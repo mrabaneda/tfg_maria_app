@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/helpers/constants.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/providers/global_controller_provider.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
@@ -19,13 +20,13 @@ class Profile extends ConsumerWidget {
       child: Scaffold(
         body: Body(
           appBar: const BaseAppBar(title: "Mi perfil"),
-          child: Align(
-            alignment: Alignment.topCenter,
+          child: Padding(
+            padding: CommonTheme.defaultBodyPadding,
             child: Column(
               children: [
-                SizedBox(height: hJM(4)),
                 SizedBox(
                   height: hJM(35),
+                  width: hJM(35),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(wJM(3)),
                     child: CachedNetworkImage(
@@ -44,27 +45,64 @@ class Profile extends ConsumerWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: hJM(5)),
-                Text(user?.name ?? "María Rabaneda Sierra", style: CommonTheme.titleMedium),
-                SizedBox(height: hJM(10)),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                SizedBox(height: hJM(2)),
+                Text(user?.name ?? "María Rabaneda Sierra", style: CommonTheme.titleLarge),
+                SizedBox(height: hJM(6)),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Mis preferencias:', style: CommonTheme.bodyMedium),
-                    SizedBox(width: wJM(5)),
-                    Column(
+                    Text('Mis preferencias:', style: CommonTheme.titleMedium),
+                    SizedBox(height: hJM(2)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        BaseButton(
-                          text: 'Audio',
-                          textStyle: CommonTheme.bodyMediumLightStyle,
-                          backgroundColor: CommonTheme.secondaryColorLight,
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: CommonTheme.secondaryColor, width: 2.0),
+                            borderRadius: BorderRadius.circular(wJM(3)),
+                          ),
+                          child: Padding(
+                            padding: CommonTheme.defaultBodyPadding,
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  audioPreference,
+                                  alignment: Alignment.center,
+                                  height: hJM(15),
+                                  fit: BoxFit.contain,
+                                ),
+                                BaseButton(
+                                  text: 'Audio',
+                                  textStyle: CommonTheme.bodyMediumLightStyle,
+                                  backgroundColor: CommonTheme.secondaryColorLight,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                        SizedBox(height: hJM(2)),
-                        BaseButton(
-                          text: 'Imágenes',
-                          textStyle: CommonTheme.bodyMediumLightStyle,
-                          backgroundColor: CommonTheme.thirdColorLight,
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: CommonTheme.secondaryColor, width: 2.0),
+                            borderRadius: BorderRadius.circular(wJM(3)),
+                          ),
+                          child: Padding(
+                            padding: CommonTheme.defaultBodyPadding,
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  photoPreference,
+                                  alignment: Alignment.center,
+                                  height: hJM(15),
+                                  fit: BoxFit.contain,
+                                ),
+                                BaseButton(
+                                  text: 'Imágenes',
+                                  textStyle: CommonTheme.bodyMediumLightStyle,
+                                  backgroundColor: CommonTheme.thirdColorLight,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),

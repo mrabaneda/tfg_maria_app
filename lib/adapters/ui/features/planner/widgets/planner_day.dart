@@ -18,6 +18,7 @@ class PlannerDay extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final plannerDays = ref.watch(plannerProvider.select((value) => value.plannerDays));
+    final bool isDayCompleted = plannerDays[dayIndex].taskList.every((task) => task.isDone);
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
@@ -26,7 +27,7 @@ class PlannerDay extends ConsumerWidget {
       child: Container(
         padding: CommonTheme.defaultCardPadding,
         decoration: BoxDecoration(
-          border: Border.all(width: 2.0, color: CommonTheme.statusBarColor),
+          border: Border.all(width: 3.0, color: isDayCompleted ? CommonTheme.successColor : CommonTheme.secondaryColorLight),
           borderRadius: BorderRadius.circular(wJM(3)),
         ),
         child: Column(
