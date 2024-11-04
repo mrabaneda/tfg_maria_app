@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/models/login_password.model.dart';
 import 'package:tfg_maria_app/adapters/ui/features/auth/sign_in/providers/sign_in_controller.provider.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/helpers/constants.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/extensions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
-import 'package:tfg_maria_app/adapters/ui/shared/helpers/utils.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_app_bar.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_button.dart';
@@ -27,22 +27,23 @@ class SignInPassword extends ConsumerStatefulWidget {
 
 class _SignInPasswordstate extends ConsumerState<SignInPassword> {
   int selectedItem = -1;
+  bool isWrongPassword = false;
   List<String> selectedPassword = [];
 
   @override
   Widget build(BuildContext context) {
-    ref.listen<AsyncValue<bool>>(
+    ref.listen(
       signInControllerProvider.select((value) => value.asyncState),
       (_, asyncValue) {
         if (asyncValue.isError) {
-          errorDialogBuilder(context, asyncValue.error.toString());
+          // errorDialogBuilder(context, asyncValue.error.toString());
+          setState(() => isWrongPassword = true);
         }
         if (asyncValue.isDone && Navigator.of(context).canPop()) {
           Navigator.pop(context, false);
         }
       },
     );
-
     return SafeArea(
       child: Scaffold(
         body: Body(
@@ -52,10 +53,9 @@ class _SignInPasswordstate extends ConsumerState<SignInPassword> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Selecciona tu contraseña en el orden que corresponde:', style: CommonTheme.titleSmall),
-                SizedBox(height: hJM(2)),
+                Text('Selecciona tu contraseña en el orden correspondiente:', style: CommonTheme.titleSmall),
                 SizedBox(
-                  height: hJM(90),
+                  height: hJM(74),
                   child: GridView.builder(
                     padding: EdgeInsets.all(hJM(3)),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -72,6 +72,9 @@ class _SignInPasswordstate extends ConsumerState<SignInPassword> {
                               setState(
                                 () {
                                   String passwordString = widget.loginPasswords[index].passwordPiece;
+                                  if (isWrongPassword) {
+                                    isWrongPassword = false;
+                                  }
                                   selectedPassword.contains(passwordString)
                                       ? selectedPassword.remove(passwordString)
                                       : selectedPassword.add(passwordString);
@@ -90,7 +93,7 @@ class _SignInPasswordstate extends ConsumerState<SignInPassword> {
                                 borderRadius: BorderRadius.circular(wJM(3)),
                               ),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(wJM(3)),
+                                borderRadius: BorderRadius.circular(wJM(2)),
                                 child: CachedNetworkImage(
                                   imageUrl: widget.loginPasswords[index].photoUrl,
                                   placeholder: (_, url) => Align(
@@ -131,6 +134,45 @@ class _SignInPasswordstate extends ConsumerState<SignInPassword> {
                     },
                   ),
                 ),
+                Visibility(
+                  visible: isWrongPassword,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: CommonTheme.secondaryColor, width: 2.0),
+                      borderRadius: BorderRadius.circular(wJM(3)),
+                    ),
+                    child: Padding(
+                      padding: CommonTheme.defaultPadding,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: wJM(45),
+                            child: Text(
+                              'Ups, parece que este no es el orden correcto! Prueba otra vez por favor.',
+                              maxLines: 3,
+                              style: CommonTheme.bodySmall,
+                            ),
+                          ),
+                          Spacer(),
+                          Image.asset(
+                            doubtImage,
+                            alignment: Alignment.center,
+                            height: hJM(12),
+                            fit: BoxFit.contain,
+                          ),
+                          SizedBox(width: wJM(2)),
+                          Image.asset(
+                            tryAgainImage,
+                            alignment: Alignment.center,
+                            height: hJM(12),
+                            fit: BoxFit.contain,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: hJM(3)),
                 BaseButton(
                   backgroundColor: CommonTheme.secondaryColor,
                   width: wJM(50),
