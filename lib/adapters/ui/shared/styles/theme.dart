@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/size_extension.dart';
@@ -23,6 +24,7 @@ class CommonTheme {
     },
   );
   static const primaryColor = Color(primaryValue);
+  static const primaryColorLight = AppColors.tealLight;
   static const primaryColorDark = AppColors.tealDark;
   static const secondaryColor = AppColors.pinkNormal;
   static const secondaryColorLight = AppColors.pinkLight;
@@ -89,6 +91,7 @@ class CommonTheme {
 
   static final bodyMediumStyle = bodyMedium.copyWith(color: textColor);
   static final bodyMediumLightStyle = bodyMedium.copyWith(color: darkButtonTextColor);
+  static final formErrorStyle = bodyMedium.copyWith(color: errorColor, decorationColor: errorColor);
 
   static final bodyLargeStyle = bodyLarge.copyWith(color: textColor);
 
@@ -153,7 +156,38 @@ class CommonTheme {
       color: CommonTheme.appBarShadowColor.withOpacity(0.1),
     ),
   ];
+
+  /* ---------- Buttons Styles ---------- */
+  static final datePickerButtonStyle = ButtonStyle(padding: WidgetStatePropertyAll(defaultButtonPadding));
+
+  static const inputDecoration = InputDecoration(
+    enabledBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: CommonTheme.primaryColor, width: 1),
+    ),
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: CommonTheme.primaryColor, width: 2),
+    ),
+    border: UnderlineInputBorder(
+      borderSide: BorderSide(color: primaryColor, width: 1),
+    ),
+    errorBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: errorColor, width: 1),
+    ),
+    disabledBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: disabledColor, width: 1),
+    ),
+  );
 }
+
+const List<LocalizationsDelegate<dynamic>> appLocalizationsDelegates = [
+  GlobalMaterialLocalizations.delegate,
+  GlobalWidgetsLocalizations.delegate,
+  GlobalCupertinoLocalizations.delegate,
+];
+
+const List<Locale> supportedAppLocales = [
+  Locale('es'),
+];
 
 final appThemeData = ThemeData(
   useMaterial3: true,
