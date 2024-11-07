@@ -15,7 +15,6 @@ class Profile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(globalControllerProvider.select((value) => value.authUser));
-
     return SafeArea(
       child: Scaffold(
         body: Body(
