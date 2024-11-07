@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/extensions.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/utils.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/input.dart';
@@ -66,22 +67,34 @@ class _DatePickerState extends State<DatePicker> {
       final date = await showDatePicker(
         context: context,
         builder: (context, datePicker) {
-          return Theme(
-            data: context.theme.copyWith(
-              colorScheme: const ColorScheme.light().copyWith(primary: CommonTheme.primaryColorDark),
-              datePickerTheme: DatePickerThemeData(
-                headerHeadlineStyle: CommonTheme.titleMedium,
-                dividerColor: CommonTheme.dividerColor,
-                surfaceTintColor: Colors.transparent,
-                rangePickerBackgroundColor: CommonTheme.secondaryColorLight,
-                dayOverlayColor: WidgetStateProperty.all(CommonTheme.backgroundColor),
-                confirmButtonStyle: CommonTheme.datePickerButtonStyle,
+          return Transform.scale(
+            scale: 1.3,
+            child: Container(
+              padding: EdgeInsets.all(hJM(3)),
+              height: hJM(65),
+              width: wJM(70),
+              child: Theme(
+                data: context.theme.copyWith(
+                  colorScheme: const ColorScheme.light().copyWith(primary: CommonTheme.primaryColorDark),
+                  datePickerTheme: DatePickerThemeData(
+                    headerHeadlineStyle: CommonTheme.titleSmall,
+                    dayStyle: CommonTheme.bodyMedium,
+                    yearStyle: CommonTheme.bodyMedium,
+                    dividerColor: CommonTheme.dividerColor,
+                    surfaceTintColor: Colors.transparent,
+                    rangePickerBackgroundColor: CommonTheme.secondaryColorLight,
+                    dayOverlayColor: WidgetStateProperty.all(CommonTheme.backgroundColor),
+                    confirmButtonStyle: CommonTheme.datePickerButtonStyle,
+                    cancelButtonStyle: CommonTheme.datePickerButtonStyle,
+                    rangePickerHeaderHelpStyle: CommonTheme.bodySmall,
+                  ),
+                ),
+                child: datePicker!,
               ),
             ),
-            child: datePicker!,
           );
         },
-        initialEntryMode: DatePickerEntryMode.calendarOnly,
+        initialEntryMode: DatePickerEntryMode.calendar,
         cancelText: 'Cancelar',
         confirmText: 'Aceptar',
         helpText: 'Día seleccionado:',

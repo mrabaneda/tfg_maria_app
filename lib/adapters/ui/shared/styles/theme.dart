@@ -126,6 +126,7 @@ class CommonTheme {
   static final defaultBodyPadding = EdgeInsets.all(wJM(4));
   static final defaultCardPadding = EdgeInsets.all(wJM(4));
   static final defaultButtonPadding = EdgeInsets.symmetric(horizontal: wJM(3));
+  static final defaultCalendarButtonPadding = EdgeInsets.symmetric(horizontal: wJM(2), vertical: hJM(2));
   static final defaultPadding = EdgeInsets.symmetric(horizontal: wJM(5), vertical: hJM(1.5));
 
   /* ---------- Default Radius ---------- */
@@ -158,7 +159,7 @@ class CommonTheme {
   ];
 
   /* ---------- Buttons Styles ---------- */
-  static final datePickerButtonStyle = ButtonStyle(padding: WidgetStatePropertyAll(defaultButtonPadding));
+  static final datePickerButtonStyle = ButtonStyle(padding: WidgetStatePropertyAll(defaultCalendarButtonPadding));
 
   static const inputDecoration = InputDecoration(
     enabledBorder: UnderlineInputBorder(
@@ -232,7 +233,7 @@ final appThemeData = ThemeData(
     elevation: 2.0,
     surfaceTintColor: CommonTheme.backgroundColor,
   ),
-  iconTheme: IconThemeData(size: 0.04.sh),
+  iconTheme: IconThemeData(size: hJM(3), color: CommonTheme.secondaryColor),
   expansionTileTheme: ExpansionTileThemeData(
     backgroundColor: Colors.transparent,
     collapsedBackgroundColor: Colors.transparent,
@@ -244,4 +245,5 @@ final appThemeData = ThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: BorderSide.none),
     collapsedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0), side: BorderSide.none),
   ),
+  inputDecorationTheme: InputDecorationTheme(hintStyle: CommonTheme.bodySmall),
 );
