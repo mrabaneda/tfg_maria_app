@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tfg_maria_app/adapters/ui/features/planner/providers/planner_controller.provider.dart';
-import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/audio_preference.dart';
-import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/image_preference.dart';
+import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/task_item/audio_preference.dart';
+import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/task_item/image_preference.dart';
 import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/task_status_checkbox.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
@@ -34,17 +34,18 @@ class PlannerDayItemTask extends ConsumerWidget {
             children: [
               TaskStatusCheckbox(isChecked: taskItem.isDone, dayIndex: dayIndex, taskIndex: taskIndex),
               SizedBox(width: wJM(3)),
-              Text(taskItem.title, style: CommonTheme.titleSmall),
+              Text(taskItem.title, style: CommonTheme.titleMedium.copyWith(color: CommonTheme.statusBarColor)),
             ],
           ),
           SizedBox(height: hJM(3)),
           _TaskDescription(description: taskItem.description),
           SizedBox(height: hJM(3)),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ImagePreference(isVisible: taskItem.isDone),
-              AudioPreference(text: 'Bien hecho campeona, eres la mejor.', isVisible: taskItem.isDone),
+              AudioPreference(text: '¡Bien hecho! ¡Eres la mejor!', isVisible: taskItem.isDone),
             ],
           ),
           SizedBox(
@@ -52,7 +53,7 @@ class PlannerDayItemTask extends ConsumerWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text('¿Cómo me he sentido?', style: CommonTheme.bodyMedium),
+                Text('¿Cómo me he sentido?', style: CommonTheme.bodySmall),
                 Spacer(),
                 GestureDetector(
                   onTap: () => ref.read(plannerProvider.notifier).setFeedback(dayIndex, taskIndex, 1),
@@ -96,7 +97,7 @@ class _TaskDescription extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(wJM(2)),
       decoration: BoxDecoration(
-        border: Border.all(width: 2.0, color: CommonTheme.statusBarColor),
+        border: Border.all(width: 2.0, color: CommonTheme.primaryColor),
         borderRadius: BorderRadius.circular(wJM(3)),
       ),
       child: Column(

@@ -3,7 +3,8 @@ import 'package:tfg_maria_app/adapters/ui/features/planner/models/planner_day_it
 
 final List<PlannerDayViewModel> weeklyPlanner = [
   PlannerDayViewModel(
-    fullDay: 'Lunes 28 de octubre de 2024',
+    fullDay: '',
+    descriptionImagesUrls: [toWalkImage, goShoppingImage],
     taskList: [
       PlannerDayItemViewModel(
         title: 'Ir a dar un paseo',
@@ -20,7 +21,8 @@ final List<PlannerDayViewModel> weeklyPlanner = [
     ],
   ),
   PlannerDayViewModel(
-    fullDay: 'Martes 29 de octubre de 2024',
+    fullDay: '',
+    descriptionImagesUrls: [toVisitImage, listenToMusicImage, paintImage],
     taskList: [
       PlannerDayItemViewModel(
         title: 'Saludar a los vecinos',
@@ -43,7 +45,8 @@ final List<PlannerDayViewModel> weeklyPlanner = [
     ],
   ),
   PlannerDayViewModel(
-    fullDay: 'Miércoles 30 de octubre de 2024',
+    fullDay: '',
+    descriptionImagesUrls: [toReadImage],
     taskList: [
       PlannerDayItemViewModel(
         title: 'Leer un libro',
@@ -54,7 +57,8 @@ final List<PlannerDayViewModel> weeklyPlanner = [
     ],
   ),
   PlannerDayViewModel(
-    fullDay: 'Jueves 31 de octubre de 2024',
+    fullDay: '',
+    descriptionImagesUrls: [watchMovieImage, snackImage, familyImage],
     taskList: [
       PlannerDayItemViewModel(
         title: 'Ver una película',
@@ -68,10 +72,17 @@ final List<PlannerDayViewModel> weeklyPlanner = [
         isDone: false,
         taskFeedback: 0,
       ),
+      PlannerDayItemViewModel(
+        title: 'Pasar tiempo con la familia',
+        description: 'Dedica tiempo a charlar o jugar con tu familia.',
+        isDone: true,
+        taskFeedback: 2,
+      ),
     ],
   ),
   PlannerDayViewModel(
-    fullDay: 'Viernes 1 de noviembre de 2024',
+    fullDay: '',
+    descriptionImagesUrls: [friendsImage],
     taskList: [
       PlannerDayItemViewModel(
         title: 'Visitar a un amigo',
@@ -82,7 +93,8 @@ final List<PlannerDayViewModel> weeklyPlanner = [
     ],
   ),
   PlannerDayViewModel(
-    fullDay: 'Sábado 2 de noviembre de 2024',
+    fullDay: '',
+    descriptionImagesUrls: [playSportsImage, toCookImage, boardGameImage],
     taskList: [
       PlannerDayItemViewModel(
         title: 'Hacer ejercicio',
@@ -105,7 +117,8 @@ final List<PlannerDayViewModel> weeklyPlanner = [
     ],
   ),
   PlannerDayViewModel(
-    fullDay: 'Domingo 3 de noviembre de 2024',
+    descriptionImagesUrls: [familyImage],
+    fullDay: '',
     taskList: [
       PlannerDayItemViewModel(
         title: 'Pasar tiempo con la familia',
@@ -116,3 +129,17 @@ final List<PlannerDayViewModel> weeklyPlanner = [
     ],
   ),
 ];
+
+const friendsImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/amigos.png";
+const toWalkImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/caminar.png";
+const toCookImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/cocinar.png";
+const paintImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/dibujar.png";
+const listenToMusicImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/escuchar%20m%C3%BAsica.png";
+const familyImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/familia.png";
+const playSportsImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/hacer%20ejercicio.png";
+const goShoppingImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/hacer%20la%20compra.png";
+const boardGameImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/juego%20de%20mesa.png";
+const toReadImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/leer.png";
+const snackImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/merienda.png";
+const watchMovieImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/ver%20una%20pel%C3%ADcula.png";
+const toVisitImage = "https://storage.googleapis.com/tfg-maria-14cce.appspot.com/tasks_images/visitar.png";

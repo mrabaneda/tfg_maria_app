@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tfg_maria_app/adapters/ui/features/planner/providers/planner_controller.provider.dart';
-import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/planner_day_item_task.dart';
+import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/task_item/planner_day_item_task.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_app_bar.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/body.dart';
 

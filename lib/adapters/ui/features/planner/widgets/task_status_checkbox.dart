@@ -8,12 +8,14 @@ class TaskStatusCheckbox extends ConsumerStatefulWidget {
   final bool isChecked;
   final int? dayIndex;
   final int? taskIndex;
+  final bool isStatusChangeWanted;
 
   const TaskStatusCheckbox({
     super.key,
     required this.isChecked,
     this.dayIndex,
     this.taskIndex,
+    this.isStatusChangeWanted = true,
   });
 
   @override
@@ -33,9 +35,11 @@ class _TaskStatusCheckboxState extends ConsumerState<TaskStatusCheckbox> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => setState(() {
-        _isChecked = !_isChecked;
-        if (widget.dayIndex != null && widget.taskIndex != null) {
-          ref.read(plannerProvider.notifier).setIsDone(widget.dayIndex!, widget.taskIndex!, _isChecked);
+        if (widget.isStatusChangeWanted) {
+          _isChecked = !_isChecked;
+          if (widget.dayIndex != null && widget.taskIndex != null) {
+            ref.read(plannerProvider.notifier).setIsDone(widget.dayIndex!, widget.taskIndex!, _isChecked);
+          }
         }
       }),
       child: Container(

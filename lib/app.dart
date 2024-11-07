@@ -21,6 +21,8 @@ class MyApp extends StatelessWidget {
         title: 'App VALE',
         debugShowCheckedModeBanner: false,
         theme: appThemeData,
+        localizationsDelegates: appLocalizationsDelegates,
+        supportedLocales: supportedAppLocales,
         home: const Root(),
       ),
     );

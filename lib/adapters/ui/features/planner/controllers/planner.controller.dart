@@ -31,4 +31,56 @@ class PlannerController extends StateNotifier<PlannerState> {
 
     state = state.copyWith(plannerDays: updatedDays);
   }
+
+  Future<void> createTask(String taskDay, String taskImageUrl, PlannerDayItemViewModel newTask) async {
+    try {
+      if (state.asyncState.isLoading) return;
+
+      if (mounted) {
+        state = state.copyWith(asyncState: const AsyncLoading());
+      }
+
+      await Future.delayed(Duration(seconds: 3));
+
+      if (taskDay.isEmpty) throw Exception('La fecha del día no puede estar vacía.');
+
+      if (taskImageUrl.isEmpty) throw Exception('La URL de la imagen no puede estar vacía.');
+
+      if (newTask.title.isEmpty || newTask.description.isEmpty) throw Exception('La tarea debe tener un título y una descripción.');
+
+      if (newTask.isDone == true) throw Exception('La tarea no debe estar marcada como completada por defecto.');
+
+      if (newTask.taskFeedback != -1) throw Exception('El feedback de la tarea debe ser inicializado correctamente.');
+
+      int dayIndex = state.plannerDays.indexWhere((day) => day.fullDay.contains(taskDay));
+
+      if (dayIndex == -1) {
+        final newPlannerDay = PlannerDayViewModel(
+          fullDay: taskDay,
+          taskList: [newTask],
+          descriptionImagesUrls: [taskImageUrl],
+        );
+
+        final updatedDays = List<PlannerDayViewModel>.from(state.plannerDays)..add(newPlannerDay);
+
+        if (mounted) {
+          state = state.copyWith(plannerDays: updatedDays, asyncState: const AsyncData(true));
+        }
+      } else {
+        final updatedDays = List<PlannerDayViewModel>.from(state.plannerDays);
+        final updatedTasks = List<PlannerDayItemViewModel>.from(updatedDays[dayIndex].taskList)..add(newTask);
+        final updatedImages = List<String>.from(updatedDays[dayIndex].descriptionImagesUrls)..add(taskImageUrl);
+
+        updatedDays[dayIndex] = updatedDays[dayIndex].copyWith(taskList: updatedTasks, descriptionImagesUrls: updatedImages);
+
+        if (mounted) {
+          state = state.copyWith(plannerDays: updatedDays, asyncState: const AsyncData(true));
+        }
+      }
+    } on Exception catch (ex) {
+      if (mounted) state = state.copyWith(asyncState: AsyncError(ex, StackTrace.current));
+    } catch (err) {
+      if (mounted) state = state.copyWith(asyncState: AsyncError(err, StackTrace.current));
+    }
+  }
 }
