@@ -16,7 +16,6 @@ class BottomNavBar extends ConsumerWidget {
       decoration: BoxDecoration(
         color: CommonTheme.navBarColor,
         border: Border.all(width: 0, color: Colors.transparent),
-        boxShadow: CommonTheme.defaultNavBarboxShadow,
       ),
       child: Row(
         children: List.generate(

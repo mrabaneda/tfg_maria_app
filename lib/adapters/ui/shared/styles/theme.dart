@@ -233,7 +233,7 @@ final appThemeData = ThemeData(
     elevation: 2.0,
     surfaceTintColor: CommonTheme.backgroundColor,
   ),
-  iconTheme: IconThemeData(size: hJM(3), color: CommonTheme.secondaryColor),
+  iconTheme: IconThemeData(size: hJM(3)),
   expansionTileTheme: ExpansionTileThemeData(
     backgroundColor: Colors.transparent,
     collapsedBackgroundColor: Colors.transparent,

@@ -41,34 +41,31 @@ class _AudioPreferenceState extends State<AudioPreference> {
         width: wJM(60),
         padding: EdgeInsets.symmetric(horizontal: wJM(2)),
         decoration: BoxDecoration(
-          color: CommonTheme.thirdColorLight,
           borderRadius: CommonTheme.defaultCardRadius,
+          border: Border.all(color: CommonTheme.secondaryColorLight, width: 2.0),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              decoration: BoxDecoration(
-                color: CommonTheme.thirdColor,
-                shape: BoxShape.circle,
-              ),
-              padding: EdgeInsets.all(3), // Ajusta el tamaño del fondo alrededor del icono
+              padding: EdgeInsets.all(3),
+              decoration: BoxDecoration(color: CommonTheme.thirdColor, shape: BoxShape.circle),
               child: IconButton(
                 icon: Icon(
                   isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                  size: hJM(4), // Tamaño del icono
-                  color: Colors.white, // Cambia el color del icono si es necesario
+                  size: hJM(4),
+                  color: CommonTheme.statusBarColor,
                 ),
                 onPressed: _togglePlayPause,
               ),
             ),
-            SizedBox(width: wJM(3)),
             SizedBox(
-              width: wJM(45),
+              width: wJM(40),
               child: Text(
                 widget.text,
                 style: CommonTheme.bodySmallStyle.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: CommonTheme.darkButtonTextColor,
+                  color: CommonTheme.statusBarColor,
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

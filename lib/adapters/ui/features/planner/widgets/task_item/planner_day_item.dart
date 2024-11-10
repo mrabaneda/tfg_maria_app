@@ -23,7 +23,6 @@ class PlannerDayItem extends ConsumerWidget {
           child: SingleChildScrollView(
             physics: ClampingScrollPhysics(),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: plannerDays[dayIndex]
                   .taskList
                   .asMap()

@@ -19,7 +19,7 @@ class ImagePreference extends StatelessWidget {
           Image.asset(
             successImagePreference,
             alignment: Alignment.center,
-            height: hJM(15),
+            height: hJM(13),
             fit: BoxFit.contain,
           ),
           SizedBox(height: hJM(3)),

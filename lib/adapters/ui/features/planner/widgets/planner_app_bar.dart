@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/create_task/create_task.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/utils.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_button.dart';
 
-class PlannerAppBar extends ConsumerWidget {
+class PlannerAppBar extends StatelessWidget {
   const PlannerAppBar({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: CommonTheme.backgroundColor,
