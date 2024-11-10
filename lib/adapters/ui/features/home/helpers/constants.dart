@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/helpers/constants.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/colors.dart';
-import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 
 class HomeMenuItem {
   final Color color;
   final String title;
-  final TextStyle style;
   final int navBarIndex;
+  final String imagePath;
 
   HomeMenuItem({
     required this.color,
     required this.title,
-    required this.style,
     required this.navBarIndex,
+    required this.imagePath,
   });
 }
 
@@ -20,25 +20,25 @@ List<HomeMenuItem> homeMenuItems = [
   HomeMenuItem(
     color: AppColors.pinkNormalHover,
     title: "Mi Agenda",
-    style: CommonTheme.bodyMediumLightStyle,
     navBarIndex: 0,
+    imagePath: plannerImage,
   ),
   HomeMenuItem(
     color: AppColors.yellowNormalHover,
-    title: "Mi Lista de la Compra",
-    style: CommonTheme.bodyMediumLightStyle,
+    title: "Mis Listas",
     navBarIndex: 1,
+    imagePath: listImage,
   ),
   HomeMenuItem(
     color: AppColors.orangeNormalHover,
     title: "Mi perfil",
-    style: CommonTheme.bodyMediumLightStyle,
     navBarIndex: 3,
+    imagePath: profileImage,
   ),
   HomeMenuItem(
     color: AppColors.tealNormalHover,
     title: "Ajustes",
-    style: CommonTheme.bodyMediumLightStyle,
     navBarIndex: 4,
+    imagePath: settingsImage,
   ),
 ];

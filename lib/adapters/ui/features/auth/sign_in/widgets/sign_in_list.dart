@@ -24,7 +24,7 @@ class _SignInListstate extends ConsumerState<SignInList> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: EdgeInsets.all(hJM(3)),
+      padding: EdgeInsets.symmetric(horizontal: wJM(3)),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 15,
@@ -46,7 +46,7 @@ class _SignInListstate extends ConsumerState<SignInList> {
               borderRadius: BorderRadius.circular(wJM(3)),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(wJM(3)),
+              borderRadius: BorderRadius.circular(wJM(2.5)),
               child: CachedNetworkImage(
                 imageUrl: widget.logins[index].photoUrl,
                 placeholder: (_, url) => Align(

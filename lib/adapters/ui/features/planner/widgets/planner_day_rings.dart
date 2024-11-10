@@ -42,8 +42,8 @@ class PlannerDayRings extends StatelessWidget {
           height: hJM(30),
           width: wJM(10),
           child: CustomPaint(
-            size: Size(hJM(6), hJM(6)), // Tamaño del donut
-            painter: _PlannerDayRingsPainter(), // Usar el pintor personalizado
+            size: Size(hJM(6), hJM(6)),
+            painter: _PlannerDayRingsPainter(),
           ),
         );
       },

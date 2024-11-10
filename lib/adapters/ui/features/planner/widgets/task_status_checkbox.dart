@@ -1,28 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tfg_maria_app/adapters/ui/features/planner/providers/planner_controller.provider.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 
-class TaskStatusCheckbox extends StatefulWidget {
-  const TaskStatusCheckbox({super.key});
+class TaskStatusCheckbox extends ConsumerStatefulWidget {
+  final bool isChecked;
+  final int? dayIndex;
+  final int? taskIndex;
+  final bool isStatusChangeWanted;
+
+  const TaskStatusCheckbox({
+    super.key,
+    required this.isChecked,
+    this.dayIndex,
+    this.taskIndex,
+    this.isStatusChangeWanted = true,
+  });
 
   @override
-  State<TaskStatusCheckbox> createState() => _TaskStatusCheckboxState();
+  ConsumerState<TaskStatusCheckbox> createState() => _TaskStatusCheckboxState();
 }
 
-class _TaskStatusCheckboxState extends State<TaskStatusCheckbox> {
-  bool _isChecked = false; // Estado del checkbox
+class _TaskStatusCheckboxState extends ConsumerState<TaskStatusCheckbox> {
+  bool _isChecked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isChecked = widget.isChecked;
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => setState(() => _isChecked = !_isChecked),
+      onTap: () => setState(() {
+        if (widget.isStatusChangeWanted) {
+          _isChecked = !_isChecked;
+          if (widget.dayIndex != null && widget.taskIndex != null) {
+            ref.read(plannerProvider.notifier).setIsDone(widget.dayIndex!, widget.taskIndex!, _isChecked);
+          }
+        }
+      }),
       child: Container(
         width: wJM(5.5),
         height: wJM(5.5),
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(
-            color: _isChecked ? CommonTheme.primaryColor : Colors.grey,
+            color: _isChecked ? CommonTheme.successColor : Colors.grey,
             width: 4,
           ),
           borderRadius: BorderRadius.circular(12),
@@ -30,7 +56,7 @@ class _TaskStatusCheckboxState extends State<TaskStatusCheckbox> {
         child: _isChecked
             ? Icon(
                 Icons.check,
-                color: CommonTheme.primaryColorDark,
+                color: CommonTheme.successColor,
                 size: hJM(3),
               )
             : SizedBox.shrink(),

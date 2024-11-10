@@ -32,12 +32,18 @@ class SignInPage extends ConsumerWidget {
                     Text('Selecciona tu perfil:', style: CommonTheme.titleSmall),
                     SizedBox(height: hJM(3)),
                     Container(
+                      padding: CommonTheme.defaultBodyPadding.copyWith(left: wJM(2)),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey, width: 2.0),
                         borderRadius: BorderRadius.circular(wJM(3)),
                       ),
                       height: hJM(90),
-                      child: Scrollbar(thumbVisibility: true, child: SignInList(logins: loginState.logins)),
+                      child: Scrollbar(
+                        thumbVisibility: true,
+                        radius: CommonTheme.defaultScrollbarRadius,
+                        thickness: CommonTheme.defaultScrollbarThickness,
+                        child: SignInList(logins: loginState.logins),
+                      ),
                     ),
                     SizedBox(height: hJM(3)),
                     BaseButton(
