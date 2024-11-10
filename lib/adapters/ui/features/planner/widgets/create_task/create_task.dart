@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tfg_maria_app/adapters/ui/features/planner/helpers/constants.dart';
 import 'package:tfg_maria_app/adapters/ui/features/planner/models/planner_day_item.view_model.dart';
 import 'package:tfg_maria_app/adapters/ui/features/planner/providers/planner_controller.provider.dart';
+import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/create_task/create_task_weekday.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/extensions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/utils.dart';
@@ -13,7 +14,6 @@ import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_app_bar.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_button.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/body.dart';
-import 'package:tfg_maria_app/adapters/ui/shared/widgets/date_picker_field.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/input.dart';
 
 class CreateTask extends ConsumerStatefulWidget {
@@ -49,19 +49,11 @@ class _CreateTaskState extends ConsumerState<CreateTask> {
         body: Body(
           appBar: BaseAppBar(title: 'Crear una nueva Tarea', back: true),
           child: Padding(
-            padding: CommonTheme.defaultBodyPadding,
+            padding: CommonTheme.defaultBodyPadding.copyWith(bottom: 0.0),
             child: ListView(
               children: [
-                DatePickerField(
-                  label: 'Desde',
-                  placeHolder: 'Desde el día:',
-                  errorText: '',
-                  isEnabled: !isLoading,
-                  textEditingController: _selectedDate,
-                  resetError: () => {},
-                  firstDate: DateTime(2024, 1, 1),
-                ),
-                SizedBox(height: hJM(9)),
+                CreateTaskWeekday(textEditingController: _selectedDate),
+                SizedBox(height: hJM(4)),
                 Input(
                   label: 'Título de la tarea',
                   placeHolder: 'Introduce el título de la tarea',
@@ -69,7 +61,7 @@ class _CreateTaskState extends ConsumerState<CreateTask> {
                   textEditingController: _taskTitleController,
                   isEnabled: !isLoading,
                 ),
-                SizedBox(height: hJM(9)),
+                SizedBox(height: hJM(4)),
                 Input(
                   label: 'Descripción de la tarea',
                   placeHolder: 'Introduce la descripción de la tarea',
@@ -77,7 +69,7 @@ class _CreateTaskState extends ConsumerState<CreateTask> {
                   textEditingController: _taskDescriptionController,
                   isEnabled: !isLoading,
                 ),
-                SizedBox(height: hJM(9)),
+                SizedBox(height: hJM(4)),
                 Text('Imagen de la tarea', style: CommonTheme.titleSmall),
                 SizedBox(height: hJM(2)),
                 GestureDetector(
@@ -109,10 +101,11 @@ class _CreateTaskState extends ConsumerState<CreateTask> {
                           ),
                   ),
                 ),
-                SizedBox(height: hJM(15)),
+                SizedBox(height: hJM(8)),
                 BaseButton(
                   text: 'Crear tarea',
                   backgroundColor: CommonTheme.secondaryColor,
+                  loading: isLoading,
                   onClick: () => {
                     ref.read(plannerProvider.notifier).createTask(
                           _selectedDate.value.text,
@@ -125,7 +118,6 @@ class _CreateTaskState extends ConsumerState<CreateTask> {
                           ),
                         ),
                   },
-                  loading: isLoading,
                 ),
               ],
             ),

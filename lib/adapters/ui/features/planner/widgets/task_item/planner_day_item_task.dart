@@ -28,7 +28,7 @@ class PlannerDayItemTask extends ConsumerWidget {
       padding: EdgeInsets.symmetric(horizontal: wJM(3), vertical: hJM(2)),
       margin: EdgeInsets.symmetric(vertical: hJM(1), horizontal: wJM(3)),
       decoration: BoxDecoration(
-        border: Border.all(width: 3.0, color: CommonTheme.secondaryColor),
+        border: Border.all(width: 2.0, color: CommonTheme.secondaryColor),
         borderRadius: BorderRadius.circular(wJM(3)),
       ),
       child: Column(

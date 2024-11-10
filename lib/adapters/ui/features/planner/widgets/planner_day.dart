@@ -30,13 +30,13 @@ class PlannerDay extends ConsumerWidget {
             margin: EdgeInsets.only(top: hJM(2)),
             padding: EdgeInsets.all(wJM(3)),
             decoration: BoxDecoration(
-              border: Border.all(width: 5.0, color: CommonTheme.secondaryColor),
+              border: Border.all(width: 2.5, color: CommonTheme.secondaryColor),
               borderRadius: BorderRadius.circular(wJM(3)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(plannerDays[dayIndex].fullDay, style: CommonTheme.titleMedium),
+                Text(plannerDays[dayIndex].fullDay, style: CommonTheme.titleMediumTextStyle),
                 SizedBox(height: hJM(2)),
                 Column(
                   children: plannerDays[dayIndex].taskList.asMap().entries.map(
@@ -45,14 +45,14 @@ class PlannerDay extends ConsumerWidget {
                         margin: EdgeInsets.symmetric(vertical: hJM(1)),
                         padding: EdgeInsets.only(left: wJM(3), right: wJM(1), top: hJM(0.3), bottom: hJM(0.3)),
                         decoration: BoxDecoration(
-                          border: Border.all(width: 3.0, color: CommonTheme.thirdColor),
+                          border: Border.all(width: 2.0, color: CommonTheme.thirdColor),
                           borderRadius: BorderRadius.circular(wJM(3)),
                         ),
                         child: Row(
                           children: [
                             TaskStatusCheckbox(isChecked: task.value.isDone, isStatusChangeWanted: false),
                             SizedBox(width: wJM(3)),
-                            Text(task.value.title, style: CommonTheme.bodyMedium),
+                            Text(task.value.title, style: CommonTheme.bodyMediumStyle),
                             Spacer(),
                             SizedBox(
                               height: hJM(10),
