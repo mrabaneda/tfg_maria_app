@@ -158,9 +158,6 @@ class CommonTheme {
     ),
   ];
 
-  /* ---------- Buttons Styles ---------- */
-  static final datePickerButtonStyle = ButtonStyle(padding: WidgetStatePropertyAll(defaultCalendarButtonPadding));
-
   static const inputDecoration = InputDecoration(
     enabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(color: CommonTheme.primaryColor, width: 1),
