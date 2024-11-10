@@ -1,98 +1,82 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_maria_app/adapters/ui/features/planner/widgets/task_status_checkbox.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:tfg_maria_app/adapters/ui/features/my_lists/providers/planner_controller.provider.dart';
+import 'package:tfg_maria_app/adapters/ui/features/my_lists/widgets/my_lists_app_bar.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/styles/theme.dart';
-import 'package:tfg_maria_app/adapters/ui/shared/widgets/base_app_bar.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/widgets/body.dart';
 
-class MyLists extends StatelessWidget {
+class MyLists extends ConsumerWidget {
   const MyLists({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final myLists = ref.watch(myListProvider.select((value) => value.myLists));
     return SafeArea(
       child: Scaffold(
         body: Body(
-          appBar: const BaseAppBar(title: "Mis Listas"),
-          child: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
-            child: Padding(
-              padding: CommonTheme.defaultBodyPadding,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _ListItem(
-                    width: wJM(45),
-                    title: 'Hacer la compra',
-                    backgroundColor: CommonTheme.thirdColorLight,
-                    tasks: ['Tomates', 'Pan', 'Chocolate', 'Plátanos'],
+          appBar: const MyListsAppBar(),
+          child: Padding(
+            padding: CommonTheme.defaultBodyPadding.copyWith(bottom: 0.0),
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: ClampingScrollPhysics(),
+              separatorBuilder: (_, __) => SizedBox(height: hJM(3)),
+              itemCount: myLists.length,
+              itemBuilder: (_, index) {
+                return Container(
+                  padding: CommonTheme.defaultBodyPadding,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(wJM(3)),
+                    color: index.isEven ? CommonTheme.secondaryColorLight : CommonTheme.thirdColorLight,
                   ),
-                  _ListItem(
-                    width: wJM(45),
-                    title: 'Mis películas favoritas',
-                    backgroundColor: CommonTheme.secondaryColorLight,
-                    tasks: ['El castillo Ambulante', 'Ponyo', 'Chihiro', 'Kiki', 'Spiderman', 'Titanic'],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        myLists[index].title,
+                        style: CommonTheme.titleMedium.copyWith(color: CommonTheme.statusBarColor),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(height: hJM(2)),
+                      Text(myLists[index].description, style: CommonTheme.bodyMediumStyle),
+                      SizedBox(height: hJM(2)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: myLists[index].descriptionImagesUrls.map(
+                          (imageUrl) {
+                            return SizedBox(
+                              height: hJM(9),
+                              width: hJM(9),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(wJM(1)),
+                                child: CachedNetworkImage(
+                                  imageUrl: imageUrl,
+                                  placeholder: (_, url) => Align(
+                                    alignment: Alignment.center,
+                                    child: SizedBox(
+                                      height: hJM(5),
+                                      width: hJM(5),
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  ),
+                                  errorWidget: (_, __, ___) => const Icon(Icons.error),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
+                        ).toList(),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                );
+              },
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _ListItem extends StatelessWidget {
-  final String title;
-  final List<String> tasks;
-  final double width;
-  final Color backgroundColor;
-
-  const _ListItem({
-    required this.title,
-    required this.tasks,
-    required this.width,
-    required this.backgroundColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      padding: CommonTheme.defaultBodyPadding,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(wJM(3)),
-        color: backgroundColor,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: CommonTheme.titleMedium.copyWith(color: CommonTheme.statusBarColor),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: hJM(2)),
-          ListView.separated(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: tasks.length,
-            itemBuilder: (_, index) => Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TaskStatusCheckbox(isChecked: false),
-                SizedBox(width: wJM(2)),
-                SizedBox(
-                  width: wJM(29),
-                  child: Text(tasks[index], style: CommonTheme.bodyMediumStyle, maxLines: 2, overflow: TextOverflow.ellipsis)),
-              ],
-            ),
-            separatorBuilder: (_, __) => SizedBox(height: hJM(1)),
-          ),
-        ],
       ),
     );
   }

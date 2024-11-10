@@ -17,28 +17,25 @@ class Planner extends ConsumerWidget {
       child: Scaffold(
         body: Body(
           appBar: PlannerAppBar(),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Container(
-              padding: CommonTheme.defaultBodyPadding.copyWith(bottom: 0.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Hoy es día: ${weekPlanner.elementAt(0).fullDay}', style: CommonTheme.bodyMedium),
-                  SizedBox(height: hJM(3)),
-                  SizedBox(
-                    height: hJM(89),
-                    child: ListView.separated(
-                      physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: weekPlanner.length,
-                      itemBuilder: (_, index) => PlannerDay(dayIndex: index),
-                      separatorBuilder: (_, __) => Divider(height: hJM(5), color: CommonTheme.dividerColor),
-                    ),
+          child: Container(
+            padding: CommonTheme.defaultBodyPadding.copyWith(bottom: 0.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Hoy es día: ${weekPlanner.elementAt(0).fullDay}', style: CommonTheme.bodyMedium),
+                SizedBox(height: hJM(3)),
+                SizedBox(
+                  height: hJM(89),
+                  child: ListView.separated(
+                    physics: ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: weekPlanner.length,
+                    itemBuilder: (_, index) => PlannerDay(dayIndex: index),
+                    separatorBuilder: (_, __) => SizedBox(height: hJM(5)),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

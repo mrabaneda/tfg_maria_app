@@ -19,7 +19,6 @@ class PlannerDay extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final plannerDays = ref.watch(plannerProvider.select((value) => value.plannerDays));
-    final bool isDayCompleted = plannerDays[dayIndex].taskList.every((task) => task.isDone);
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
@@ -29,56 +28,53 @@ class PlannerDay extends ConsumerWidget {
         children: [
           Container(
             margin: EdgeInsets.only(top: hJM(2)),
-            padding: CommonTheme.defaultCardPadding,
+            padding: EdgeInsets.all(wJM(3)),
             decoration: BoxDecoration(
-              border: Border.all(width: 5.0, color: isDayCompleted ? CommonTheme.successColor : CommonTheme.secondaryColorLight),
+              border: Border.all(width: 5.0, color: CommonTheme.secondaryColor),
               borderRadius: BorderRadius.circular(wJM(3)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(plannerDays[dayIndex].fullDay, style: CommonTheme.titleMedium),
-                SizedBox(height: hJM(4.5)),
+                SizedBox(height: hJM(2)),
                 Column(
-                  children: plannerDays[dayIndex].taskList.map(
+                  children: plannerDays[dayIndex].taskList.asMap().entries.map(
                     (task) {
-                      return Column(
-                        children: [
-                          Row(
-                            children: [
-                              TaskStatusCheckbox(isChecked: task.isDone, isStatusChangeWanted: false),
-                              SizedBox(width: wJM(3)),
-                              Text(task.title, style: CommonTheme.bodyMedium),
-                            ],
-                          ),
-                          SizedBox(height: hJM(2)),
-                        ],
-                      );
-                    },
-                  ).toList(),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: plannerDays[dayIndex].descriptionImagesUrls.map(
-                    (imageUrl) {
-                      return SizedBox(
-                        height: hJM(10),
-                        width: hJM(10),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(wJM(1)),
-                          child: CachedNetworkImage(
-                            imageUrl: imageUrl,
-                            placeholder: (_, url) => Align(
-                              alignment: Alignment.center,
-                              child: SizedBox(
-                                height: hJM(5),
-                                width: hJM(5),
-                                child: CircularProgressIndicator(),
+                      return Container(
+                        margin: EdgeInsets.symmetric(vertical: hJM(1)),
+                        padding: EdgeInsets.only(left: wJM(3), right: wJM(1), top: hJM(0.3), bottom: hJM(0.3)),
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 3.0, color: CommonTheme.thirdColor),
+                          borderRadius: BorderRadius.circular(wJM(3)),
+                        ),
+                        child: Row(
+                          children: [
+                            TaskStatusCheckbox(isChecked: task.value.isDone, isStatusChangeWanted: false),
+                            SizedBox(width: wJM(3)),
+                            Text(task.value.title, style: CommonTheme.bodyMedium),
+                            Spacer(),
+                            SizedBox(
+                              height: hJM(10),
+                              width: hJM(10),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(wJM(1)),
+                                child: CachedNetworkImage(
+                                  imageUrl: plannerDays[dayIndex].descriptionImagesUrls[task.key],
+                                  placeholder: (_, url) => Align(
+                                    alignment: Alignment.center,
+                                    child: SizedBox(
+                                      height: hJM(5),
+                                      width: hJM(5),
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  ),
+                                  errorWidget: (_, __, ___) => const Icon(Icons.error),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                            errorWidget: (_, __, ___) => const Icon(Icons.error),
-                            fit: BoxFit.cover,
-                          ),
+                          ],
                         ),
                       );
                     },

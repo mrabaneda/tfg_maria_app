@@ -14,7 +14,9 @@ class PlannerController extends StateNotifier<PlannerState> {
 
     updatedDays[dayIndex] = updatedDays[dayIndex].copyWith(taskList: updatedTasks);
 
-    state = state.copyWith(plannerDays: updatedDays);
+    if (mounted) {
+      state = state.copyWith(plannerDays: updatedDays);
+    }
   }
 
   void setFeedback(int dayIndex, int taskIndex, int feedback) {
@@ -29,7 +31,9 @@ class PlannerController extends StateNotifier<PlannerState> {
 
     updatedDays[dayIndex] = updatedDays[dayIndex].copyWith(taskList: updatedTasks);
 
-    state = state.copyWith(plannerDays: updatedDays);
+    if (mounted) {
+      state = state.copyWith(plannerDays: updatedDays);
+    }
   }
 
   Future<void> createTask(String taskDay, String taskImageUrl, PlannerDayItemViewModel newTask) async {
@@ -43,13 +47,9 @@ class PlannerController extends StateNotifier<PlannerState> {
       await Future.delayed(Duration(seconds: 3));
 
       if (taskDay.isEmpty) throw Exception('La fecha del día no puede estar vacía.');
-
       if (taskImageUrl.isEmpty) throw Exception('La URL de la imagen no puede estar vacía.');
-
       if (newTask.title.isEmpty || newTask.description.isEmpty) throw Exception('La tarea debe tener un título y una descripción.');
-
       if (newTask.isDone == true) throw Exception('La tarea no debe estar marcada como completada por defecto.');
-
       if (newTask.taskFeedback != -1) throw Exception('El feedback de la tarea debe ser inicializado correctamente.');
 
       int dayIndex = state.plannerDays.indexWhere((day) => day.fullDay.contains(taskDay));
