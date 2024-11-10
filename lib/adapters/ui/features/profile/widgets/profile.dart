@@ -45,62 +45,59 @@ class Profile extends ConsumerWidget {
                   ),
                 ),
                 SizedBox(height: hJM(2)),
-                Text(user?.name ?? "María Rabaneda Sierra", style: CommonTheme.titleLarge),
-                SizedBox(height: hJM(6)),
+                Text(user?.name ?? "María Rabaneda Sierra", style: CommonTheme.titleMedium),
+                SizedBox(height: hJM(15)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Mis preferencias:', style: CommonTheme.titleMedium),
-                    SizedBox(height: hJM(2)),
+                    Text('Mis preferencias:', style: CommonTheme.titleSmall),
+                    SizedBox(height: hJM(1)),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(color: CommonTheme.secondaryColor, width: 2.0),
                             borderRadius: BorderRadius.circular(wJM(3)),
                           ),
-                          child: Padding(
-                            padding: CommonTheme.defaultBodyPadding,
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  audioPreference,
-                                  alignment: Alignment.center,
-                                  height: hJM(15),
-                                  fit: BoxFit.contain,
-                                ),
-                                BaseButton(
-                                  text: 'Audio',
-                                  textStyle: CommonTheme.bodyMediumLightStyle,
-                                  backgroundColor: CommonTheme.secondaryColorLight,
-                                ),
-                              ],
-                            ),
+                          padding: EdgeInsets.symmetric(horizontal: wJM(2), vertical: hJM(2)),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                audioPreference,
+                                alignment: Alignment.center,
+                                height: hJM(8),
+                                fit: BoxFit.contain,
+                              ),
+                              BaseButton(
+                                text: 'Audio',
+                                textStyle: CommonTheme.bodyMediumStyle,
+                                backgroundColor: CommonTheme.secondaryColorLight,
+                              ),
+                            ],
                           ),
                         ),
+                        SizedBox(width: wJM(3)),
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(color: CommonTheme.secondaryColor, width: 2.0),
                             borderRadius: BorderRadius.circular(wJM(3)),
                           ),
-                          child: Padding(
-                            padding: CommonTheme.defaultBodyPadding,
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  photoPreference,
-                                  alignment: Alignment.center,
-                                  height: hJM(15),
-                                  fit: BoxFit.contain,
-                                ),
-                                BaseButton(
-                                  text: 'Imágenes',
-                                  textStyle: CommonTheme.bodyMediumLightStyle,
-                                  backgroundColor: CommonTheme.thirdColorLight,
-                                ),
-                              ],
-                            ),
+                          padding: EdgeInsets.symmetric(horizontal: wJM(2), vertical: hJM(2)),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                photoPreference,
+                                alignment: Alignment.center,
+                                height: hJM(8),
+                                fit: BoxFit.contain,
+                              ),
+                              BaseButton(
+                                text: 'Imágenes',
+                                textStyle: CommonTheme.bodyMediumStyle,
+                                backgroundColor: CommonTheme.thirdColorLight,
+                              ),
+                            ],
                           ),
                         ),
                       ],
