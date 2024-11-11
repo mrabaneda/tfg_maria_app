@@ -1,16 +1,25 @@
-# tfg_maria_app
+# App Móvil Trabajo Fin de Grado
 
-A new Flutter project.
+### Aplicación Accesible para la Asociación VALE
 
-## Getting Started
+## 🚀 Tecnologías Usadas
 
-This project is a starting point for a Flutter application.
+- 📱 **Flutter**
+- 🔐 **Firebase Authentication**
+- 🗂️ **Firebase Firestore**
+- ☁️ **Google Cloud Storage**
 
-A few resources to get you started if this is your first Flutter project:
+## ⚙️ Funcionalidades
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- App para usuarios finales de la Asociación VALE.
+- Inicio de sesión con imágenes personalizadas.
+- Autenticación de usuarios con Firebase Authentication.
+- Gestión de agenda y listas personalizadas.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠️ Instalación
+
+No requiere instalación adicional.
+
+## 📝 Autora
+
+María Rabaneda Sierra
