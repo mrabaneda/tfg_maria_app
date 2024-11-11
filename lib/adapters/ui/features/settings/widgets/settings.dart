@@ -16,47 +16,48 @@ class Settings extends StatelessWidget {
       child: Scaffold(
         body: Body(
           appBar: const BaseAppBar(title: "Ajustes"),
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              height: hJM(70),
-              padding: CommonTheme.defaultBodyPadding,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _SettingItem(
-                    title: 'Contacto con VALE',
-                    icon: Icon(Icons.contacts_rounded),
-                    url: "https://asvale.org/",
+          child: Padding(
+            padding: CommonTheme.defaultBodyPadding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                _SettingItem(
+                  title: 'Contacto con VALE',
+                  icon: Icon(Icons.contacts_rounded),
+                  url: "https://asvale.org/",
+                ),
+                SizedBox(height: hJM(2)),
+                _SettingItem(
+                  title: 'Comunicador en línea',
+                  icon: Icon(Icons.record_voice_over_rounded),
+                  url: "https://grid.asterics.eu/#grid/grid-data-1711313967865-120",
+                ),
+                SizedBox(height: hJM(2)),
+                _SettingItem(
+                  title: 'Crear historias',
+                  icon: Icon(Icons.auto_stories_rounded),
+                  url: "https://infinitas-historias.web.app/",
+                ),
+                SizedBox(height: hJM(2)),
+                _SettingItem(title: 'Modo pantalla completa', icon: Icon(Icons.fullscreen_rounded), url: ""),
+                SizedBox(height: hJM(2)),
+                _SettingItem(title: 'Ajustar tamaño de letra', icon: Icon(Icons.text_fields_rounded), url: ""),
+                SizedBox(height: hJM(2)),
+                BaseButton(
+                  width: double.infinity,
+                  height: hJM(7),
+                  text: "Cerrar sesión",
+                  textStyle: CommonTheme.bodyMediumLightStyle,
+                  icon: Icon(
+                    Icons.power_settings_new_rounded,
+                    color: CommonTheme.backgroundColor,
+                    size: wJM(4),
                   ),
-                  _SettingItem(
-                    title: 'Comunicador en línea',
-                    icon: Icon(Icons.record_voice_over_rounded),
-                    url: "https://grid.asterics.eu/#grid/grid-data-1711313967865-120",
-                  ),
-                  _SettingItem(
-                    title: 'Crear historias',
-                    icon: Icon(Icons.auto_stories_rounded),
-                    url: "https://infinitas-historias.web.app/",
-                  ),
-                  _SettingItem(title: 'Modo pantalla completa', icon: Icon(Icons.fullscreen_rounded), url: ""),
-                  _SettingItem(title: 'Ajustar tamaño de letra', icon: Icon(Icons.text_fields_rounded), url: ""),
-                  BaseButton(
-                    width: wJM(80),
-                    height: hJM(8),
-                    text: "Cerrar sesión",
-                    textStyle: CommonTheme.bodyMediumLightStyle,
-                    icon: Icon(
-                      Icons.power_settings_new_rounded,
-                      color: CommonTheme.backgroundColor,
-                      size: wJM(4),
-                    ),
-                    backgroundColor: CommonTheme.errorColor,
-                    onClick: () => showSignOutDialog(context),
-                  ),
-                ],
-              ),
+                  backgroundColor: CommonTheme.errorColor,
+                  onClick: () => showSignOutDialog(context),
+                ),
+              ],
             ),
           ),
         ),
@@ -81,8 +82,7 @@ class _SettingItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => {if (url.isNotEmpty) launchUrl(Uri.parse(url))},
       child: Container(
-        width: wJM(80),
-        height: hJM(8),
+        height: hJM(7),
         padding: CommonTheme.defaultButtonPadding,
         decoration: BoxDecoration(
           borderRadius: CommonTheme.defaultButtonRadius,

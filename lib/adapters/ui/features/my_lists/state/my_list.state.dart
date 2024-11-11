@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tfg_maria_app/adapters/ui/features/my_lists/models/my_list.view.model.dart';
+import 'package:tfg_maria_app/adapters/ui/features/my_lists/models/my_list_item.view_model.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/helpers/constants.dart';
 
 class MyListState {
   final AsyncValue<bool> asyncState;
@@ -19,20 +21,41 @@ class MyListState {
     return [
       MyListViewModel(
         title: 'Mis películas favoritas',
-        description: '- Nicky, la aprendiz de bruja\n- El Castillo Ambulante\n- Ponyo',
-        descriptionImagesUrls: [
-          'https://storage.googleapis.com/tfg-maria-14cce.appspot.com/user_images/zubi22/9d587af8-d2d2-466a-8803-31379b4de328.jpg',
-          'https://storage.googleapis.com/tfg-maria-14cce.appspot.com/user_images/zubi22/1991fdf1-9ce0-4ebf-9454-42e7f082aaca.png',
-          'https://storage.googleapis.com/tfg-maria-14cce.appspot.com/user_images/zubi22/e523b4dd-d13d-4937-a5ea-09eab4346cff.jpg',
+        imageUrl: moviesImage,
+        myListItems: [
+          MyListItemViewModel(
+            description: 'Nicky, la aprendiz de bruja',
+            descriptionImagesUrl:
+                'https://storage.googleapis.com/tfg-maria-14cce.appspot.com/user_images/zubi22/9d587af8-d2d2-466a-8803-31379b4de328.jpg',
+          ),
+          MyListItemViewModel(
+            description: 'El Castillo Ambulante',
+            descriptionImagesUrl:
+                'https://storage.googleapis.com/tfg-maria-14cce.appspot.com/user_images/zubi22/1991fdf1-9ce0-4ebf-9454-42e7f082aaca.png',
+          ),
+          MyListItemViewModel(
+            description: 'Ponyo',
+            descriptionImagesUrl:
+                'https://storage.googleapis.com/tfg-maria-14cce.appspot.com/user_images/zubi22/e523b4dd-d13d-4937-a5ea-09eab4346cff.jpg',
+          ),
         ],
       ),
       MyListViewModel(
         title: 'Lista de la compra',
-        description: '- Plátanos\n- Helado de chocolate\n- Leche sin azúcar',
-        descriptionImagesUrls: [
-          'https://static.arasaac.org/pictograms/4653/4653_300.png',
-          'https://static.arasaac.org/pictograms/34092/34092_300.png',
-          'https://static.arasaac.org/pictograms/34008/34008_300.png',
+        imageUrl: shoppingImage,
+        myListItems: [
+          MyListItemViewModel(
+            description: 'Plátanos',
+            descriptionImagesUrl: 'https://static.arasaac.org/pictograms/4653/4653_300.png',
+          ),
+          MyListItemViewModel(
+            description: 'Helado de chocolate',
+            descriptionImagesUrl: 'https://static.arasaac.org/pictograms/34092/34092_300.png',
+          ),
+          MyListItemViewModel(
+            description: 'Leche sin azúcar',
+            descriptionImagesUrl: 'https://static.arasaac.org/pictograms/34008/34008_300.png',
+          ),
         ],
       ),
     ];

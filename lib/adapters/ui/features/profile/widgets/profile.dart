@@ -56,11 +56,11 @@ class Profile extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
+                          padding: EdgeInsets.symmetric(horizontal: wJM(2), vertical: hJM(2)),
                           decoration: BoxDecoration(
                             border: Border.all(color: CommonTheme.secondaryColor, width: 2.0),
                             borderRadius: BorderRadius.circular(wJM(3)),
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: wJM(2), vertical: hJM(2)),
                           child: Column(
                             children: [
                               Image.asset(

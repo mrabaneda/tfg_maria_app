@@ -44,7 +44,6 @@ class FireBaseAuthService implements BaseAuthService {
     final currentUser = auth.currentUser;
     if (currentUser == null) return null;
 
-    // TODO: review
     return AuthUserEntity(
       uid: currentUser.uid,
       email: currentUser.email!,
