@@ -50,7 +50,7 @@ class PlannerDayItemTask extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ImagePreference(isVisible: taskItem.isDone),
-              AudioPreference(text: '¡Bien hecho! ¡Eres la mejor!', isVisible: taskItem.isDone),
+              AudioPreference(text: '¡Muy bien, sigue así!', isVisible: taskItem.isDone),
             ],
           ),
           PlannerItemTaskFeedback(dayIndex: dayIndex, taskIndex: taskIndex, taskItem: taskItem, isVisible: taskItem.isDone),
