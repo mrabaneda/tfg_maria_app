@@ -1,10 +1,10 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tfg_maria_app/adapters/ui/features/my_lists/models/my_list_item.view_model.dart';
 import 'package:tfg_maria_app/adapters/ui/features/my_lists/providers/planner_controller.provider.dart';
-
-import 'package:tfg_maria_app/adapters/ui/features/planner/helpers/constants.dart';
+import 'package:tfg_maria_app/adapters/ui/features/my_lists/widgets/create_list_image_field.dart';
+import 'package:tfg_maria_app/adapters/ui/shared/helpers/constants.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/extensions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/screen_functions.dart';
 import 'package:tfg_maria_app/adapters/ui/shared/helpers/utils.dart';
@@ -24,8 +24,8 @@ class CreateList extends ConsumerStatefulWidget {
 class _CreateListState extends ConsumerState<CreateList> {
   final TextEditingController _taskTitleController = TextEditingController();
   final TextEditingController _taskDescriptionController = TextEditingController();
-  final ImagePicker _picker = ImagePicker();
-  XFile? _selectedImage;
+  XFile? _selectedTitleImage;
+  XFile? _selectedItemImage;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,13 @@ class _CreateListState extends ConsumerState<CreateList> {
                   textEditingController: _taskTitleController,
                   isEnabled: !isLoading,
                 ),
-                SizedBox(height: hJM(9)),
+                SizedBox(height: hJM(4)),
+                CreateListImageField(
+                  inputTitle: 'Selecciona la imagen para esta Lista',
+                  selectedTitleImage: _selectedTitleImage,
+                  isLoading: isLoading,
+                ),
+                SizedBox(height: hJM(8)),
                 Input(
                   label: 'Descripción de la Lista',
                   placeHolder: 'Introduce la descripción de la lista',
@@ -64,37 +70,11 @@ class _CreateListState extends ConsumerState<CreateList> {
                   textEditingController: _taskDescriptionController,
                   isEnabled: !isLoading,
                 ),
-                SizedBox(height: hJM(9)),
-                Text('Imágenes de la Lista', style: CommonTheme.titleSmall),
-                SizedBox(height: hJM(2)),
-                GestureDetector(
-                  onTap: isLoading ? null : _selectPhoto,
-                  child: Container(
-                    height: hJM(18),
-                    padding: EdgeInsets.all(wJM(2)),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: CommonTheme.primaryColor),
-                      borderRadius: CommonTheme.defaultCardRadius,
-                    ),
-                    child: _selectedImage == null
-                        ? Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.photo, size: hJM(5), color: CommonTheme.primaryColor),
-                                SizedBox(height: 8),
-                                Text('Selecciona las imágenes para esta lista', style: CommonTheme.bodySmall),
-                              ],
-                            ),
-                          )
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(wJM(2)),
-                            child: Image.file(
-                              File(_selectedImage!.path),
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                  ),
+                SizedBox(height: hJM(8)),
+                CreateListImageField(
+                  inputTitle: 'Selecciona la imagen para la Lista',
+                  selectedTitleImage: _selectedItemImage,
+                  isLoading: isLoading,
                 ),
                 SizedBox(height: hJM(15)),
                 BaseButton(
@@ -103,8 +83,14 @@ class _CreateListState extends ConsumerState<CreateList> {
                   onClick: () => {
                     ref.read(myListProvider.notifier).createList(
                       _taskTitleController.text,
-                      _taskDescriptionController.text,
-                      [playSportsImage, boardGameImage],
+                      sportsImage,
+                      [
+                        MyListItemViewModel(
+                          description: 'Natación',
+                          descriptionImagesUrl:
+                              'https://globalsymbols.com/uploads/production/image/imagefile/22066/17_22067_92669f3c-137c-43c9-9980-81619ba7ebf6.png',
+                        ),
+                      ],
                     ),
                   },
                   loading: isLoading,
@@ -115,16 +101,5 @@ class _CreateListState extends ConsumerState<CreateList> {
         ),
       ),
     );
-  }
-
-  Future<void> _selectPhoto() async {
-    final XFile? photo = await _picker.pickImage(
-      source: ImageSource.gallery,
-      preferredCameraDevice: CameraDevice.rear,
-    );
-
-    if (photo != null) {
-      setState(() => _selectedImage = photo);
-    }
   }
 }
