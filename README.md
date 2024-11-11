@@ -1,6 +1,6 @@
-# App Móvil Trabajo Fin de Grado
+# Aplicación Móvil Trabajo Fin de Grado
 
-### Aplicación Accesible para la Asociación VALE
+### Aplicación Accesible de apoyo a realización de actividades para la Asociación VALE
 
 ## 🚀 Tecnologías Usadas
 
